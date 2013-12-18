@@ -25,22 +25,23 @@ class QVBoxLayout;
 class KPlotWidget;
 class KPlotObject;
 
-class TestPlot : public QMainWindow {
- Q_OBJECT
+class TestPlot : public QMainWindow
+{
+    Q_OBJECT
 
- public:
-	TestPlot( QWidget *parent=0 );
-	~TestPlot() {}
+public:
+    TestPlot(QWidget *parent = 0);
+    ~TestPlot() {}
 
- public Q_SLOTS:
-	void slotSelectPlot( int index );
+public Q_SLOTS:
+    void slotSelectPlot(int index);
 
- private:
+private:
 
-	QVBoxLayout *vlay;
-	QComboBox *PlotSelector;
-	KPlotWidget *plot;
-	KPlotObject *po1, *po2;
+    QVBoxLayout *vlay;
+    QComboBox *PlotSelector;
+    KPlotWidget *plot;
+    KPlotObject *po1, *po2;
 };
 
 #endif

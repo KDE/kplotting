@@ -18,11 +18,11 @@
 #include "testplot_widget.h"
 #include <QApplication>
 
-int main( int argc, char *argv[] )
+int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	TestPlot *tp = new TestPlot(0);
-	tp->show();
-	QObject::connect(qApp, SIGNAL(lastWindowClosed()), qApp, SLOT(quit()));
-	return a.exec();
+    QApplication a(argc, argv);
+    TestPlot *tp = new TestPlot(0);
+    tp->show();
+    QObject::connect(qApp, SIGNAL(lastWindowClosed()), qApp, SLOT(quit()));
+    return a.exec();
 }

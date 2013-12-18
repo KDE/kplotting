@@ -34,13 +34,14 @@
  * @author Andreas Nicolai
  * @version 1.0
  */
-class KPLOTTING_EXPORT KPlotAxis {
+class KPLOTTING_EXPORT KPlotAxis
+{
 public:
 
     /**
      * Constructor, constructs an axis with the label @p label.
      */
-    explicit KPlotAxis( const QString& label = QString() );
+    explicit KPlotAxis(const QString &label = QString());
 
     /**
      * Destructor.
@@ -56,7 +57,7 @@ public:
      * Sets the "visible" property of the axis.
      * @param visible if true, this axis will be drawn on the KPlotWidget
      */
-    void setVisible( bool visible );
+    void setVisible(bool visible);
 
     /**
      * @return whether tick labels will be drawn for this axis
@@ -67,14 +68,14 @@ public:
      * Determine whether tick labels will be drawn for this axis.
      * @param b if true, tick labels will be drawn.
      */
-    void setTickLabelsShown( bool b );
+    void setTickLabelsShown(bool b);
 
     /**
      * Sets the axis label.
      * Set the label to an empty string to omit the axis label.
      * @param label a string describing the data plotted on the axis.
      */
-    void setLabel( const QString& label );
+    void setLabel(const QString &label);
 
     /**
      * @return the label string for this axis
@@ -87,10 +88,10 @@ public:
      * @param the value to be rendered as a tick label.
      * @sa setTickLabelFormat()
      */
-    QString tickLabel( double value ) const;
+    QString tickLabel(double value) const;
 
     /**
-     * Set the display format for converting the double value of the 
+     * Set the display format for converting the double value of the
      * tick's position to the QString for the tick label.
      *
      * Normally, the format character is one of 'e', 'E', 'f', 'g', or 'G'
@@ -102,13 +103,13 @@ public:
      * Note that when the format character is 't', the fieldWidth and prec
      * values are ignored.
      *
-     * @param format the format specification character 
+     * @param format the format specification character
      * @param fieldWidth the number of characters in the output string.
-     * If set to 0, the string will be as wide as it needs to be to fully 
+     * If set to 0, the string will be as wide as it needs to be to fully
      * render the value.
      * @param precision the number of characters following the decimal point.
      */
-    void setTickLabelFormat( char format = 'g', int fieldWidth = 0, int precision = -1 );
+    void setTickLabelFormat(char format = 'g', int fieldWidth = 0, int precision = -1);
 
     /**
      * @return the field width of the tick labels
@@ -127,14 +128,14 @@ public:
 
     /**
      * Determine the positions of major and minor tickmarks for this axis.
-     * @note this function is called by KPlotWidget whenever the plot's 
+     * @note this function is called by KPlotWidget whenever the plot's
      * limits are modified.
      * @param x0 the minimum data coordinate of the axis.
      * @param length the range covered by the axis, in data units.
      * @sa majorTickMarks()
      * @sa minorTickMarks()
      */
-    void setTickMarks( double x0, double length );
+    void setTickMarks(double x0, double length);
 
     /**
      * @return the list of coordinates of the major tickmarks for this axis
@@ -154,9 +155,9 @@ public:
 
 private:
     class Private;
-    Private * const d;
+    Private *const d;
 
-    Q_DISABLE_COPY( KPlotAxis )
+    Q_DISABLE_COPY(KPlotAxis)
 };
 
 #endif // KPLOTAXIS_H

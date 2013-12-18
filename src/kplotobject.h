@@ -38,7 +38,7 @@ class KPlotPoint;
  * @short Encapsulates a data set to be plotted in a KPlotWidget.
  *
  * Think of a KPlotObject as a set of data displayed as a group in the plot.
- * Each KPlotObject consists of a list of KPlotPoints, a "type" controlling 
+ * Each KPlotObject consists of a list of KPlotPoints, a "type" controlling
  * how the data points are displayed (some combination of Points, Lines, or
  * Bars), a color, and a size. There is also a parameter which controls the
  * shape of the points used to display the KPlotObject.
@@ -50,7 +50,8 @@ class KPlotPoint;
  * @author Jason Harris
  * @version 1.1
  */
-class KPLOTTING_EXPORT KPlotObject{
+class KPLOTTING_EXPORT KPlotObject
+{
 public:
     /**
      * The type classification of the KPlotObject.
@@ -61,20 +62,18 @@ public:
      * @note points should be added in order of increasing x-coordinate
      * when using Bars.
      */
-    enum PlotType
-    {
+    enum PlotType {
         UnknownType = 0,
         Points = 1,       ///< each KPlotPoint is represented with a drawn point
         Lines = 2,        ///< each KPlotPoint is connected with a line
         Bars = 4          ///< each KPlotPoint is shown as a vertical bar
     };
-    Q_DECLARE_FLAGS( PlotTypes, PlotType )
+    Q_DECLARE_FLAGS(PlotTypes, PlotType)
 
     /**
      * The available shape styles for plotted points.
      */
-    enum PointStyle
-    {
+    enum PointStyle {
         NoPoints = 0,
         Circle = 1,
         Letter = 2,
@@ -96,7 +95,7 @@ public:
      * @param size the size to use for plotted points, in pixels
      * @param ps The PointStyle describing the shape for plotted points
      */
-    explicit KPlotObject( const QColor &color = Qt::white, PlotType otype = Points, double size = 2, PointStyle ps = Circle );
+    explicit KPlotObject(const QColor &color = Qt::white, PlotType otype = Points, double size = 2, PointStyle ps = Circle);
 
     /**
      * Destructor.
@@ -112,19 +111,19 @@ public:
      * Set whether points will be drawn for this object
      * @param b if true, points will be drawn
      */
-    void setShowPoints( bool b );
+    void setShowPoints(bool b);
 
     /**
      * Set whether lines will be drawn for this object
      * @param b if true, lines will be drawn
      */
-    void setShowLines( bool b );
+    void setShowLines(bool b);
 
     /**
      * Set whether bars will be drawn for this object
      * @param b if true, bars will be drawn
      */
-    void setShowBars( bool b );
+    void setShowBars(bool b);
 
     /**
      * @return the size of the plotted points in this object, in pixels
@@ -135,7 +134,7 @@ public:
      * Set the size for plotted points in this object, in pixels
      * @param s the new size
      */
-    void setSize( double s );
+    void setSize(double s);
 
     /**
      * @return the style used for drawing the points in this object
@@ -146,54 +145,54 @@ public:
      * Set a new style for drawing the points in this object
      * @param p the new style
      */
-    void setPointStyle( PointStyle p );
+    void setPointStyle(PointStyle p);
 
     /**
      * @return the default pen for this Object.
-     * If no other pens are set, this pen will be used for 
+     * If no other pens are set, this pen will be used for
      * points, lines, bars and labels (this pen is always used for points).
      */
-    const QPen& pen() const;
+    const QPen &pen() const;
 
     /**
      * Set the default pen for this object
      * @p The pen to use
      */
-    void setPen( const QPen &p );
-    
+    void setPen(const QPen &p);
+
     /**
      * @return the pen to use for drawing lines for this Object.
      */
-    const QPen& linePen() const;
+    const QPen &linePen() const;
 
     /**
      * Set the pen to use for drawing lines for this object
      * @p The pen to use
      */
-    void setLinePen( const QPen &p );
-    
+    void setLinePen(const QPen &p);
+
     /**
      * @return the pen to use for drawing bars for this Object.
      */
-    const QPen& barPen() const;
+    const QPen &barPen() const;
 
     /**
      * Set the pen to use for drawing bars for this object
      * @p The pen to use
      */
-    void setBarPen( const QPen &p );
-    
+    void setBarPen(const QPen &p);
+
     /**
      * @return the pen to use for drawing labels for this Object.
      */
-    const QPen& labelPen() const;
+    const QPen &labelPen() const;
 
     /**
      * Set the pen to use for labels for this object
      * @p The pen to use
      */
-    void setLabelPen( const QPen &p );
-    
+    void setLabelPen(const QPen &p);
+
     /**
      * @return the default Brush to use for this Object.
      */
@@ -203,7 +202,7 @@ public:
      * Set the default brush to use for this object
      * @b The brush to use
      */
-    void setBrush( const QBrush &b );
+    void setBrush(const QBrush &b);
 
     /**
      * @return the brush to use for filling bars for this Object.
@@ -214,29 +213,29 @@ public:
      * Set the brush to use for drawing bars for this object
      * @b The brush to use
      */
-    void setBarBrush( const QBrush &b );
+    void setBarBrush(const QBrush &b);
 
     /**
      * @return the list of KPlotPoints that make up this object
      */
-    QList< KPlotPoint* > points() const;
+    QList< KPlotPoint * > points() const;
 
     /**
      * Add a point to the object's list of points, using input data to construct a KPlotPoint.
      * @param p the QPointF to add.
      * @param label the optional text label for this point
      * @param barWidth the width of the bar, if this object is to be drawn with bars
-     * @note if @param barWidth is left at its default value of 0.0, then the width will be 
-		 * automatically set to the distance between this point and the one to its right.
+     * @note if @param barWidth is left at its default value of 0.0, then the width will be
+         * automatically set to the distance between this point and the one to its right.
      */
-    void addPoint( const QPointF &p, const QString &label = QString(), double barWidth = 0.0 );
+    void addPoint(const QPointF &p, const QString &label = QString(), double barWidth = 0.0);
 
     /**
      * Add a given KPlotPoint to the object's list of points.
      * @overload
      * @param p pointer to the KPlotPoint to add.
      */
-    void addPoint( KPlotPoint *p );
+    void addPoint(KPlotPoint *p);
 
     /**
      * Add a point to the object's list of points, using input data to construct a KPlotPoint.
@@ -245,16 +244,16 @@ public:
      * @param y the Y-coordinate of the point to add.
      * @param label the optional text label
      * @param barWidth the width of the bar, if this object is to be drawn with bars
-     * @note if @param barWidth is left at its default value of 0.0, then the width will be 
-		 * automatically set to the distance between this point and the one to its right.
+     * @note if @param barWidth is left at its default value of 0.0, then the width will be
+         * automatically set to the distance between this point and the one to its right.
      */
-    void addPoint( double x, double y, const QString &label = QString(), double barWidth = 0.0 );
+    void addPoint(double x, double y, const QString &label = QString(), double barWidth = 0.0);
 
     /**
      * Remove the QPointF at position index from the list of points
      * @param index the index of the point to be removed.
      */
-    void removePoint( int index );
+    void removePoint(int index);
 
     /**
      * Remove and destroy the points of this object
@@ -264,17 +263,17 @@ public:
     /**
      * Draw this KPlotObject on the given QPainter
      * @param p The QPainter to draw on
-     * @param pw the KPlotWidget to draw on (this is needed 
+     * @param pw the KPlotWidget to draw on (this is needed
      * for the KPlotWidget::mapToWidget() function)
      */
-    void draw( QPainter *p, KPlotWidget *pw );
+    void draw(QPainter *p, KPlotWidget *pw);
 
 private:
     class Private;
-    Private * const d;
+    Private *const d;
 
-    Q_DISABLE_COPY( KPlotObject )
+    Q_DISABLE_COPY(KPlotObject)
 };
-Q_DECLARE_OPERATORS_FOR_FLAGS( KPlotObject::PlotTypes )
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPlotObject::PlotTypes)
 
 #endif

@@ -112,7 +112,7 @@ private Q_SLOTS:
     }
 
 private:
-    KPlotAxis* m_kPlotAxis;
+    KPlotAxis *m_kPlotAxis;
 };
 
 QTEST_MAIN(KPlotAxisTest)
