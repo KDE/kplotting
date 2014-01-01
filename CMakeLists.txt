@@ -16,6 +16,7 @@ find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 include(FeatureSummary)
 include(CMakePackageConfigHelpers)
 include(ECMSetupVersion)
+include(ECMGenerateHeaders)
 
 set(KF5_VERSION "5.0.0")
 
