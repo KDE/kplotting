@@ -1,7 +1,8 @@
 # KPlotting
 
+Data plotting
+
 ## Introduction
-KPlotting provides classes to do plotting.
 
 KPlotWidget is a QWidget-derived class that provides a virtual base class
 for easy data-plotting. The idea behind KPlotWidget is that you only have
@@ -21,6 +22,7 @@ plotted (POINTS or CURVE or POLYGON or LABEL).
 
 ## Links
 
+- Home page: <https://projects.kde.org/projects/frameworks/kplotting>
 - Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
 - IRC channel: #kde-devel on Freenode
 - Git repository: <https://projects.kde.org/projects/frameworks/kplotting/repository>
