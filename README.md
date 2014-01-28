@@ -10,10 +10,10 @@ to specify information in "data units"; i.e., the natural units of the
 data being plotted.  KPlotWidget automatically converts everything
 to screen pixel units.
 
-KPlotWidget draws X and Y axes with tickmarks and tick labels.  It
-automatically determines how many tickmarks to use and where they should
+KPlotWidget draws X and Y axes with tick marks and tick labels.  It
+automatically determines how many tick marks to use and where they should
 be, based on the data limits specified for the plot.  You change the limits
-by calling setLimits( double x1, double x2, double y1, double y2 ).
+by calling `setLimits(double x1, double x2, double y1, double y2)`.
 
 Data to be plotted are stored using the KPlotObject class.  KPlotObject
 consists of a QList of QPointF's, each specifying the X,Y coordinates
