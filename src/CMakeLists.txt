@@ -20,16 +20,15 @@ set_target_properties(KF5Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION_STRIN
                                              EXPORT_NAME Plotting
 )
 
-ecm_generate_headers(
+ecm_generate_headers(KPlotting_HEADERS
+  HEADER_NAMES
   KPlotAxis
   KPlotPoint
   KPlotObject
   KPlotWidget
 
-  MODULE_NAME KPlotting
   REQUIRED_HEADERS KPlotting_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KPlotting DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
