@@ -370,7 +370,7 @@ public:
      * @param value Allows you to determine how strongly the rectangle
      * should be avoided.  Larger values are avoided more strongly.
      */
-    void maskRect(const QRectF &r, float value = 1.0);
+    void maskRect(const QRectF &r, float value = 1.0f);
 
     /**
      * Indicate that object labels should try to avoid the line
@@ -383,7 +383,7 @@ public:
      * @param value Allows you to determine how strongly the line
      * should be avoided.  Larger values are avoided more strongly.
      */
-    void maskAlongLine(const QPointF &p1, const QPointF &p2, float value = 1.0);
+    void maskAlongLine(const QPointF &p1, const QPointF &p2, float value = 1.0f);
 
     /**
      * Place an object label optimally in the plot.  This function will

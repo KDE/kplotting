@@ -83,7 +83,7 @@ public:
         Hexagon = 6,
         Asterisk = 7,
         Star = 8,
-        UnknwonPoint
+        UnknownPoint
     };
 
     /**
@@ -95,7 +95,7 @@ public:
      * @param size the size to use for plotted points, in pixels
      * @param ps The PointStyle describing the shape for plotted points
      */
-    explicit KPlotObject(const QColor &color = Qt::white, PlotType otype = Points, double size = 2, PointStyle ps = Circle);
+    explicit KPlotObject(const QColor &color = Qt::white, PlotType otype = Points, double size = 2.0, PointStyle ps = Circle);
 
     /**
      * Destructor.
