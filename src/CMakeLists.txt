@@ -11,7 +11,7 @@ add_library(KF5Plotting ${kplotting_SRCS})
 generate_export_header(KF5Plotting BASE_NAME KPlotting)
 add_library(KF5::Plotting ALIAS KF5Plotting)
 
-target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KPlotting>")
+target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KPlotting>")
 
 target_link_libraries(KF5Plotting PUBLIC Qt5::Widgets)
 
@@ -30,12 +30,12 @@ ecm_generate_headers(KPlotting_HEADERS
   REQUIRED_HEADERS KPlotting_HEADERS
 )
 
-install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kplotting_export.h
   ${KPlotting_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KPlotting COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KPlotting COMPONENT Devel
 )
 
 
