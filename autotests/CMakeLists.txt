@@ -1,23 +1,13 @@
 
 find_package(Qt5 5.2.0 CONFIG REQUIRED Test Widgets)
 
-include(ECMMarkAsTest)
+include(ECMAddTests)
 
-macro(KPLOTTING_UNIT_TESTS)
-    foreach(_testname ${ARGN})
-        add_executable(${_testname} ${_testname}.cpp)
-        add_test(kplotting-${_testname} ${_testname})
-        target_link_libraries(${_testname} Qt5::Test KF5::Plotting)
-        ecm_mark_as_test(${_testname})
-    endforeach()
-endmacro()
-
-
-########### next target ###############
-
-kplotting_unit_tests(
-    kplotpointtest
-    kplotaxistest
-    kplotobjecttest
-    kplotwidgettest
+ecm_add_tests(
+    kplotpointtest.cpp
+    kplotaxistest.cpp
+    kplotobjecttest.cpp
+    kplotwidgettest.cpp
+    NAME_PREFIX "kplotting-"
+    LINK_LIBRARIES Qt5::Test KF5::Plotting
 )
