@@ -8,6 +8,5 @@ ecm_add_tests(
     kplotaxistest.cpp
     kplotobjecttest.cpp
     kplotwidgettest.cpp
-    NAME_PREFIX "kplotting-"
     LINK_LIBRARIES Qt5::Test KF5::Plotting
 )
