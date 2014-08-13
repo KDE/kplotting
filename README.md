@@ -20,9 +20,3 @@ consists of a QList of QPointF's, each specifying the X,Y coordinates
 of a data point.  KPlotObject also specifies the "type" of data to be
 plotted (POINTS or CURVE or POLYGON or LABEL).
 
-## Links
-
-- Home page: <https://projects.kde.org/projects/frameworks/kplotting>
-- Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: #kde-devel on Freenode
-- Git repository: <https://projects.kde.org/projects/frameworks/kplotting/repository>
