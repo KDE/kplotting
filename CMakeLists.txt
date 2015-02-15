@@ -19,7 +19,7 @@ include(ECMPackageConfigHelpers)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 
-set(KF5_VERSION "5.7.0") # handled by release scripts
+set(KF5_VERSION "5.8.0") # handled by release scripts
 
 ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KPLOTTING
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h"
