@@ -161,7 +161,7 @@ void KPlotAxis::setTickMarks(double x0, double length)
         NumMajorTicks++;
     }
 
-    for (int i = 0; i < NumMajorTicks + 1; i++) {
+    for (int i = 0; i < NumMajorTicks + 2; i++) {
         double xmaj = Tick0 + i * TickDistance;
         if (xmaj >= x0 && xmaj <= x0 + length) {
             d->m_MajorTickMarks.append(xmaj);
