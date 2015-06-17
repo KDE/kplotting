@@ -110,9 +110,6 @@ KPlotWidget::KPlotWidget(QWidget *parent)
     d->calcDataRectLimits(0.0, 1.0, 0.0, 1.0);
 
     setDefaultPaddings();
-
-    setMinimumSize(150, 150);
-    resize(minimumSizeHint());
 }
 
 KPlotWidget::~KPlotWidget()
