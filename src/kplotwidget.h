@@ -70,12 +70,12 @@ for ( float x = 1.0; x <= 5.0; x += 0.1 )
 kpw->addPlotObject( kpo );
  * @endcode
  *
- *@note KPlotWidget will take care of the objects added to it, so when
+ *@note KPlotWidget will take ownership of the objects added to it, so when
  *clearing the objects list (eg with removeAllPlotObjects()) any previous
  *reference to a KPlotObject already added to a KPlotWidget will be invalid.
+ *You can disable this behavior by using setAutoDelete(false).
  *
  *@author Jason Harris
- *@version 1.1
  */
 class KPLOTTING_EXPORT KPlotWidget : public QFrame
 {
@@ -183,14 +183,14 @@ public:
 
     /**
      * Add an item to the list of KPlotObjects to be plotted.
-     * @note do not use this multiple time if many objects have to be added,
-     * addPlotObjects() is strongly suggested in this case
+     * The widget takes ownership of the plot object, unless auto-delete was disabled.
      * @param object the KPlotObject to be added
      */
     void addPlotObject(KPlotObject *object);
 
     /**
      * Add more than one KPlotObject at one time.
+     * The widget takes ownership of the plot object, unless auto-delete was disabled.
      * @param objects the list of KPlotObjects to be added
      */
     void addPlotObjects(const QList< KPlotObject * > &objects);
@@ -201,7 +201,15 @@ public:
     QList< KPlotObject * > plotObjects() const;
 
     /**
-     * Remove and delete all items from the list of KPlotObjects
+     * Enables auto-deletion of plot objects if autoDelete is true; otherwise auto-deletion is disabled.
+     * Auto-deletion is enabled by default.
+     * @since 5.12
+     */
+    void setAutoDeletePlotObjects(bool autoDelete);
+
+    /**
+     * Removes all plot objects that were added to the widget.
+     * If auto-delete was not disabled, the plot objects are deleted.
      */
     void removeAllPlotObjects();
 
@@ -213,6 +221,7 @@ public:
 
     /**
      * Clear the object list, reset the data limits, and remove axis labels
+     * If auto-delete was not disabled, the plot objects are deleted.
      */
     void resetPlot();
 
@@ -220,6 +229,10 @@ public:
      * Replace an item in the KPlotObject list.
      * @param i the index of the item to be replaced
      * @param o pointer to the replacement KPlotObject
+     *
+     * @since 5.12, if auto-deletion is enabled, the previous plot object is deleted.
+     * Call setAutoDeletePlotObjects(false) if you want to swap between available plot objects
+     * and therefore you want to handle deletion externally.
      */
     void replacePlotObject(int i, KPlotObject *o);
 

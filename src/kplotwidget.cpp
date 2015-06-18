@@ -45,7 +45,7 @@ public:
     Private(KPlotWidget *qq)
         : q(qq),
           cBackground(Qt::black), cForeground(Qt::white), cGrid(Qt::gray),
-          showGrid(false), showObjectToolTip(true), useAntialias(false)
+          showGrid(false), showObjectToolTip(true), useAntialias(false), autoDelete(true)
     {
         // create the axes and setting their default properties
         KPlotAxis *leftAxis = new KPlotAxis();
@@ -62,7 +62,9 @@ public:
 
     ~Private()
     {
-        qDeleteAll(objectList);
+        if (autoDelete) {
+            qDeleteAll(objectList);
+        }
         qDeleteAll(axes);
     }
 
@@ -82,9 +84,10 @@ public:
     //Colors
     QColor cBackground, cForeground, cGrid;
     //draw options
-    bool showGrid : 1;
-    bool showObjectToolTip : 1;
-    bool useAntialias : 1;
+    bool showGrid;
+    bool showObjectToolTip;
+    bool useAntialias;
+    bool autoDelete;
     //padding
     int leftPadding, rightPadding, topPadding, bottomPadding;
     // hashmap with the axes we have
@@ -254,13 +257,20 @@ QList< KPlotObject * > KPlotWidget::plotObjects() const
     return d->objectList;
 }
 
+void KPlotWidget::setAutoDeletePlotObjects(bool autoDelete)
+{
+    d->autoDelete = autoDelete;
+}
+
 void KPlotWidget::removeAllPlotObjects()
 {
     if (d->objectList.isEmpty()) {
         return;
     }
 
-    qDeleteAll(d->objectList);
+    if (d->autoDelete) {
+        qDeleteAll(d->objectList);
+    }
     d->objectList.clear();
     update();
 }
@@ -275,7 +285,9 @@ void KPlotWidget::resetPlotMask()
 
 void KPlotWidget::resetPlot()
 {
-    qDeleteAll(d->objectList);
+    if (d->autoDelete) {
+        qDeleteAll(d->objectList);
+    }
     d->objectList.clear();
     clearSecondaryLimits();
     d->calcDataRectLimits(0.0, 1.0, 0.0, 1.0);
@@ -295,6 +307,12 @@ void KPlotWidget::replacePlotObject(int i, KPlotObject *o)
     // skip null pointers and invalid indexes
     if (!o || i < 0 || i >= d->objectList.count()) {
         return;
+    }
+    if (d->objectList.at(i) == o) {
+        return;
+    }
+    if (d->autoDelete) {
+        delete d->objectList.at(i);
     }
     d->objectList.replace(i, o);
     update();
