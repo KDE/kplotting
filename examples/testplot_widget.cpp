@@ -32,12 +32,12 @@ TestPlot::TestPlot(QWidget *p) : QMainWindow(p), po1(0), po2(0)
     vlay = new QVBoxLayout(w);
 
     PlotSelector = new QComboBox(w);
-    PlotSelector->addItem("Points plot");
-    PlotSelector->addItem("Lines plot");
-    PlotSelector->addItem("Bars plot");
-    PlotSelector->addItem("Points plot with labels");
-    PlotSelector->addItem("Points, lines and bars");
-    PlotSelector->addItem("Points, lines and bars with labels");
+    PlotSelector->addItem(QStringLiteral("Points plot"));
+    PlotSelector->addItem(QStringLiteral("Lines plot"));
+    PlotSelector->addItem(QStringLiteral("Bars plot"));
+    PlotSelector->addItem(QStringLiteral("Points plot with labels"));
+    PlotSelector->addItem(QStringLiteral("Points, lines and bars"));
+    PlotSelector->addItem(QStringLiteral("Points, lines and bars with labels"));
 
     plot = new KPlotWidget(w);
     plot->setMinimumSize(400, 400);
@@ -79,8 +79,8 @@ void TestPlot::slotSelectPlot(int n)
         plot->setLimits(-0.1, 6.38, -1.1, 1.1);
         plot->setSecondaryLimits(-5.73, 365.55, -1.1, 1.1);
         plot->axis(KPlotWidget::TopAxis)->setTickLabelsShown(true);
-        plot->axis(KPlotWidget::BottomAxis)->setLabel("Angle [radians]");
-        plot->axis(KPlotWidget::TopAxis)->setLabel("Angle [degrees]");
+        plot->axis(KPlotWidget::BottomAxis)->setLabel(QStringLiteral("Angle [radians]"));
+        plot->axis(KPlotWidget::TopAxis)->setLabel(QStringLiteral("Angle [degrees]"));
 
         po1 = new KPlotObject(Qt::red,  KPlotObject::Lines, 2);
         po2 = new KPlotObject(Qt::cyan, KPlotObject::Lines, 2);
@@ -104,7 +104,7 @@ void TestPlot::slotSelectPlot(int n)
         po1->setBarBrush(QBrush(Qt::green, Qt::Dense4Pattern));
 
         for (float x = -6.5; x <= 6.5; x += 0.5) {
-            po1->addPoint(x, 100 * exp(-0.5 * x * x), "", 0.5);
+            po1->addPoint(x, 100 * exp(-0.5 * x * x), QLatin1String(""), 0.5);
         }
 
         plot->addPlotObject(po1);
@@ -119,14 +119,14 @@ void TestPlot::slotSelectPlot(int n)
         po1 = new KPlotObject(Qt::yellow, KPlotObject::Points, 10, KPlotObject::Star);
         po1->setLabelPen(QPen(Qt::green));
 
-        po1->addPoint(0.0,  0.8, "North");
-        po1->addPoint(0.57,  0.57, "Northeast");
-        po1->addPoint(0.8,  0.0, "East");
-        po1->addPoint(0.57, -0.57, "Southeast");
-        po1->addPoint(0.0, -0.8, "South");
-        po1->addPoint(-0.57, -0.57, "Southwest");
-        po1->addPoint(-0.8,  0.0, "West");
-        po1->addPoint(-0.57,  0.57, "Northwest");
+        po1->addPoint(0.0,  0.8, QStringLiteral("North"));
+        po1->addPoint(0.57,  0.57, QStringLiteral("Northeast"));
+        po1->addPoint(0.8,  0.0, QStringLiteral("East"));
+        po1->addPoint(0.57, -0.57, QStringLiteral("Southeast"));
+        po1->addPoint(0.0, -0.8, QStringLiteral("South"));
+        po1->addPoint(-0.57, -0.57, QStringLiteral("Southwest"));
+        po1->addPoint(-0.8,  0.0, QStringLiteral("West"));
+        po1->addPoint(-0.57,  0.57, QStringLiteral("Northwest"));
 
         plot->addPlotObject(po1);
 
@@ -171,14 +171,14 @@ void TestPlot::slotSelectPlot(int n)
         po1->setLinePen(QPen(Qt::red, 3.0, Qt::DashDotLine));
         po1->setBarBrush(QBrush(Qt::blue, Qt::BDiagPattern));
 
-        po1->addPoint(-1.75, 0.5, "A");
-        po1->addPoint(-1.25, 1.0, "B");
-        po1->addPoint(-0.75, 1.25, "C");
-        po1->addPoint(-0.25, 1.5, "D");
-        po1->addPoint(0.25, 2.5, "E");
-        po1->addPoint(0.75, 3.0, "F");
-        po1->addPoint(1.25, 1.5, "G");
-        po1->addPoint(1.75, 1.75, "H");
+        po1->addPoint(-1.75, 0.5, QStringLiteral("A"));
+        po1->addPoint(-1.25, 1.0, QStringLiteral("B"));
+        po1->addPoint(-0.75, 1.25, QStringLiteral("C"));
+        po1->addPoint(-0.25, 1.5, QStringLiteral("D"));
+        po1->addPoint(0.25, 2.5, QStringLiteral("E"));
+        po1->addPoint(0.75, 3.0, QStringLiteral("F"));
+        po1->addPoint(1.25, 1.5, QStringLiteral("G"));
+        po1->addPoint(1.75, 1.75, QStringLiteral("H"));
 
         plot->addPlotObject(po1);
 

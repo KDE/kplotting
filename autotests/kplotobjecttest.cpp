@@ -170,7 +170,7 @@ private Q_SLOTS:
         QCOMPARE(m_kPlotObject->points().size(), 0);
 
         // test: void KPlotObject::addPoint( const QPointF &p, const QString &label, double barWidth )
-        m_kPlotObject->addPoint(QPointF(1, 0), QString::fromLatin1("label1"), 1.0);
+        m_kPlotObject->addPoint(QPointF(1, 0), QStringLiteral("label1"), 1.0);
         QCOMPARE(m_kPlotObject->points().size(), 1);
         KPlotPoint *p1 = m_kPlotObject->points().at(0);
         QCOMPARE(p1->position(), QPointF(1, 0));
@@ -178,14 +178,14 @@ private Q_SLOTS:
         QCOMPARE(p1->barWidth(), 1.0);
 
         // test void KPlotObject::addPoint( KPlotPoint *p )
-        KPlotPoint *p2 = new KPlotPoint(2, 2, QString::fromLatin1("label2"), 2.0);
+        KPlotPoint *p2 = new KPlotPoint(2, 2, QLatin1String("label2"), 2.0);
         m_kPlotObject->addPoint(p2);
         QCOMPARE(m_kPlotObject->points().size(), 2);
         KPlotPoint *p2List = m_kPlotObject->points().at(1);
         QCOMPARE(p2, p2List);
 
         // test void KPlotObject::addPoint( double x, double y, const QString &label, double barWidth )
-        m_kPlotObject->addPoint(3, 3, QString::fromLatin1("label3"), 3.0);
+        m_kPlotObject->addPoint(3, 3, QStringLiteral("label3"), 3.0);
         QCOMPARE(m_kPlotObject->points().size(), 3);
         KPlotPoint *p3 = m_kPlotObject->points().at(2);
         QCOMPARE(p3->position(), QPointF(3, 3));

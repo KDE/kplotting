@@ -28,7 +28,7 @@ class KPlotAxisTest : public QObject
 private Q_SLOTS:
     void initTestCase()
     {
-        m_kPlotAxis = new KPlotAxis(QString::fromLatin1("label"));
+        m_kPlotAxis = new KPlotAxis(QLatin1String("label"));
     }
 
     void cleanupTestCase()
@@ -58,7 +58,7 @@ private Q_SLOTS:
     {
         QCOMPARE(m_kPlotAxis->label(), QString::fromLatin1("label"));
 
-        m_kPlotAxis->setLabel(QString::fromLatin1("newLabel"));
+        m_kPlotAxis->setLabel(QStringLiteral("newLabel"));
         QCOMPARE(m_kPlotAxis->label(), QString::fromLatin1("newLabel"));
     }
 
