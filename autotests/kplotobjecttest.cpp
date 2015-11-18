@@ -178,7 +178,7 @@ private Q_SLOTS:
         QCOMPARE(p1->barWidth(), 1.0);
 
         // test void KPlotObject::addPoint( KPlotPoint *p )
-        KPlotPoint *p2 = new KPlotPoint(2, 2, QLatin1String("label2"), 2.0);
+        KPlotPoint *p2 = new KPlotPoint(2, 2, QStringLiteral("label2"), 2.0);
         m_kPlotObject->addPoint(p2);
         QCOMPARE(m_kPlotObject->points().size(), 2);
         KPlotPoint *p2List = m_kPlotObject->points().at(1);

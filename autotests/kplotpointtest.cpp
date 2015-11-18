@@ -29,8 +29,8 @@ private Q_SLOTS:
 
     void testConstructor()
     {
-        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QLatin1String("label"), 5.0);
-        KPlotPoint *p2 = new KPlotPoint(QPointF(2.0, 3.0), QLatin1String("label"), 5.0);
+        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QStringLiteral("label"), 5.0);
+        KPlotPoint *p2 = new KPlotPoint(QPointF(2.0, 3.0), QStringLiteral("label"), 5.0);
 
         QCOMPARE(p1->x(), 2.0);
         QCOMPARE(p2->x(), 2.0);
@@ -50,7 +50,7 @@ private Q_SLOTS:
 
     void testPosition()
     {
-        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QLatin1String("label"), 5.0);
+        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QStringLiteral("label"), 5.0);
 
         p1->setX(4.0);
         QCOMPARE(p1->x(), 4.0);
@@ -70,7 +70,7 @@ private Q_SLOTS:
 
     void testLabel()
     {
-        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QLatin1String("label"), 5.0);
+        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QStringLiteral("label"), 5.0);
 
         p1->setLabel(QStringLiteral("newLabel"));
         QCOMPARE(p1->label(), QString::fromLatin1("newLabel"));
@@ -80,7 +80,7 @@ private Q_SLOTS:
 
     void testBarWidth()
     {
-        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QLatin1String("label"), 5.0);
+        KPlotPoint *p1 = new KPlotPoint(2.0, 3.0, QStringLiteral("label"), 5.0);
 
         p1->setBarWidth(5.0);
         QCOMPARE(p1->barWidth(), 5.0);

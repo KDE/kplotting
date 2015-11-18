@@ -28,7 +28,7 @@ class KPlotAxisTest : public QObject
 private Q_SLOTS:
     void initTestCase()
     {
-        m_kPlotAxis = new KPlotAxis(QLatin1String("label"));
+        m_kPlotAxis = new KPlotAxis(QStringLiteral("label"));
     }
 
     void cleanupTestCase()
