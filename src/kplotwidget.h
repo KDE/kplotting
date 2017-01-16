@@ -94,7 +94,7 @@ public:
      *@short Constructor.
      *@param parent the parent widget
      */
-    explicit KPlotWidget(QWidget *parent = 0);
+    explicit KPlotWidget(QWidget *parent = nullptr);
 
     /**
      *@short Destructor.

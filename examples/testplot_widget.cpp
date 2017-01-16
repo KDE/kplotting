@@ -26,7 +26,7 @@
 #include "kplotaxis.h"
 #include "testplot_widget.h"
 
-TestPlot::TestPlot(QWidget *p) : QMainWindow(p), po1(0), po2(0)
+TestPlot::TestPlot(QWidget *p) : QMainWindow(p), po1(nullptr), po2(nullptr)
 {
     QWidget *w = new QWidget(this);
     vlay = new QVBoxLayout(w);

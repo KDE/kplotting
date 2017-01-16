@@ -386,13 +386,13 @@ void KPlotWidget::setObjectToolTipShown(bool show)
 KPlotAxis *KPlotWidget::axis(Axis type)
 {
     QHash<Axis, KPlotAxis *>::Iterator it = d->axes.find(type);
-    return it != d->axes.end() ? it.value() : 0;
+    return it != d->axes.end() ? it.value() : nullptr;
 }
 
 const KPlotAxis *KPlotWidget::axis(Axis type) const
 {
     QHash<Axis, KPlotAxis *>::ConstIterator it = d->axes.constFind(type);
-    return it != d->axes.constEnd() ? it.value() : 0;
+    return it != d->axes.constEnd() ? it.value() : nullptr;
 }
 
 QRect KPlotWidget::pixRect() const

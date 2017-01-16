@@ -30,7 +30,7 @@ class TestPlot : public QMainWindow
     Q_OBJECT
 
 public:
-    TestPlot(QWidget *parent = 0);
+    TestPlot(QWidget *parent = nullptr);
     ~TestPlot() {}
 
 public Q_SLOTS:
