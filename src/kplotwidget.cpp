@@ -39,7 +39,7 @@
 #define SMALLTICKSIZE 4
 #define TICKOFFSET 0
 
-class KPlotWidget::Private
+class Q_DECL_HIDDEN KPlotWidget::Private
 {
 public:
     Private(KPlotWidget *qq)
