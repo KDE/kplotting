@@ -23,7 +23,7 @@
 
 #include <kplotting_export.h>
 
-#include <QtCore/QString>
+#include <QString>
 
 class QPointF;
 

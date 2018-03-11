@@ -19,7 +19,7 @@
 #include <QComboBox>
 #include <QBoxLayout>
 #include <QPen>
-#include <QtCore/QDebug>
+#include <QDebug>
 
 #include "kplotwidget.h"
 #include "kplotobject.h"

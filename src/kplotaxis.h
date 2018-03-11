@@ -23,8 +23,8 @@
 
 #include <kplotting_export.h>
 
-#include <QtCore/QString>
-#include <QtCore/QList>
+#include <QString>
+#include <QList>
 
 /**
  * @short Axis for KPlotWidget
