@@ -176,6 +176,16 @@ void KPlotAxis::setTickMarks(double x0, double length)
     }
 }
 
+void KPlotAxis::setMajorTickMarks(const QList<double>& marks)
+{
+    d->m_MajorTickMarks = marks;
+}
+
+void KPlotAxis::setMinorTickMarks(const QList<double>& marks)
+{
+    d->m_MinorTickMarks = marks;
+}
+
 QString KPlotAxis::tickLabel(double val) const
 {
     if (d->m_labelFmt == 't') {

@@ -138,6 +138,20 @@ public:
     void setTickMarks(double x0, double length);
 
     /**
+     * Set the positions of major tickmarks for this axis.
+     * @param marks the list of coordinates of the major tickmarks for this axis.
+     * @sa majorTickMarks()
+     */
+    void setMajorTickMarks(const QList<double>& marks);
+
+    /**
+     * Set the positions of minor tickmarks for this axis.
+     * @param marks the list of coordinates of the minor tickmarks for this axis.
+     * @sa minorTickMarks()
+     */
+    void setMinorTickMarks(const QList<double>& marks);
+
+    /**
      * @return the list of coordinates of the major tickmarks for this axis
      * @note the positions of tickmarks are automatically computed by setTickMarks().
      * @sa setTickMarks()

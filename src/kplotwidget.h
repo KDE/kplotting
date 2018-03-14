@@ -277,6 +277,12 @@ public:
     void setGridColor(const QColor &gc);
 
     /**
+     * Set the axes font size
+     * @param s the new font size
+     */
+    void setAxesFontSize(int s);
+
+    /**
      * @return whether the grid lines are shown
      * Grid lines are not shown by default.
      */

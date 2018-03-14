@@ -45,6 +45,7 @@ public:
     Private(KPlotWidget *qq)
         : q(qq),
           cBackground(Qt::black), cForeground(Qt::white), cGrid(Qt::gray),
+          axesFontSize(q->font().pointSize()-2), //default to small font for tick labels
           showGrid(false), showObjectToolTip(true), useAntialias(false), autoDelete(true)
     {
         // create the axes and setting their default properties
@@ -83,6 +84,8 @@ public:
 
     //Colors
     QColor cBackground, cForeground, cGrid;
+    //Font
+    int axesFontSize;
     //draw options
     bool showGrid;
     bool showObjectToolTip;
@@ -348,6 +351,12 @@ void KPlotWidget::setForegroundColor(const QColor &fg)
 void KPlotWidget::setGridColor(const QColor &gc)
 {
     d->cGrid = gc;
+    update();
+}
+
+void KPlotWidget::setAxesFontSize(int s)
+{
+    d->axesFontSize = s;
     update();
 }
 
@@ -768,10 +777,8 @@ void KPlotWidget::drawAxes(QPainter *p)
     p->setPen(foregroundColor());
     p->setBrush(Qt::NoBrush);
 
-    //set small font for tick labels
     QFont f = p->font();
-    int s = f.pointSize();
-    f.setPointSize(s - 2);
+    f.setPointSize(d->axesFontSize);
     p->setFont(f);
 
     /*** BottomAxis ***/
