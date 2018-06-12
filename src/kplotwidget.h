@@ -114,12 +114,12 @@ public:
     /**
      *@return suggested minimum size for the plot widget
      */
-    QSize minimumSizeHint() const Q_DECL_OVERRIDE;
+    QSize minimumSizeHint() const override;
 
     /**
      *@return suggested size for the plot widget
      */
-    QSize sizeHint() const Q_DECL_OVERRIDE;
+    QSize sizeHint() const override;
 
     /**
      * Set new data limits for the plot.
@@ -443,17 +443,17 @@ protected:
     /**
      * Generic event handler.
      */
-    bool event(QEvent *) Q_DECL_OVERRIDE;
+    bool event(QEvent *) override;
 
     /**
      * The paint event handler, executed when update() or repaint() is called.
      */
-    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *) override;
 
     /**
      * The resize event handler, called when the widget is resized.
      */
-    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *) override;
 
     /**
      * Draws the plot axes and axis labels.
