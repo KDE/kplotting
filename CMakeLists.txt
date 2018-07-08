@@ -36,7 +36,9 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
 
 add_subdirectory(src)
 add_subdirectory(examples)
-add_subdirectory(autotests)
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Plotting")
