@@ -420,7 +420,7 @@ bool KPlotWidget::event(QEvent *e)
         if (d->showObjectToolTip) {
             QHelpEvent *he = static_cast<QHelpEvent *>(e);
             QList<KPlotPoint *> pts = pointsUnderPoint(he->pos() - QPoint(leftPadding(), topPadding()) - contentsRect().topLeft());
-            if (pts.count() > 0) {
+            if (!pts.isEmpty()) {
                 QToolTip::showText(he->globalPos(), pts.front()->label(), this);
             }
         }
