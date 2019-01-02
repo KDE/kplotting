@@ -99,7 +99,7 @@ public:
     /**
      *@short Destructor.
      */
-    virtual ~KPlotWidget();
+    ~KPlotWidget() override;
 
     /**
      * The four types of plot axes.
