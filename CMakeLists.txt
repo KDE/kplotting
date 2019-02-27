@@ -32,7 +32,7 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfigVersion.cmake"
                         SOVERSION 5)
-
+#add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
 
 add_subdirectory(src)
 add_subdirectory(examples)
