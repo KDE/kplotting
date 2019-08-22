@@ -22,10 +22,8 @@
 
 #include <math.h>
 
-#include <QActionEvent>
 #include <QHash>
 #include <QPainter>
-#include <QPixmap>
 #include <QToolTip>
 #include <QtAlgorithms>
 

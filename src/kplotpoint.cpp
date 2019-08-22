@@ -21,8 +21,7 @@
 #include "kplotpoint.h"
 
 #include <QtAlgorithms>
-#include <QPainter>
-#include <QDebug>
+#include <QPointF>
 
 class KPlotPoint::Private
 {
