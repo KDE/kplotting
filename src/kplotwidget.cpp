@@ -670,7 +670,7 @@ void KPlotWidget::placeLabel(QPainter *painter, KPlotPoint *pp)
         //QPen pen = painter->pen();
         //pen.setStyle( Qt::DotLine );
         //painter->setPen( pen );
-        painter->drawRoundRect(bestRect);
+        painter->drawRoundedRect(bestRect, 25, 25, Qt::RelativeSize);
 
         //Now connect the label to the point with a line.
         //The line is drawn from the center of the near edge of the rectangle
