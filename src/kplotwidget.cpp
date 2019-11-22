@@ -23,6 +23,7 @@
 #include <math.h>
 
 #include <QHash>
+#include <QHelpEvent>
 #include <QPainter>
 #include <QToolTip>
 #include <QtAlgorithms>
