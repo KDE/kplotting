@@ -225,7 +225,7 @@ void KPlotWidget::addPlotObject(KPlotObject *object)
 void KPlotWidget::addPlotObjects(const QList< KPlotObject * > &objects)
 {
     bool addedsome = false;
-    Q_FOREACH (KPlotObject *o, objects) {
+    for (KPlotObject *o : objects) {
         if (!o) {
             continue;
         }
@@ -389,8 +389,9 @@ QRect KPlotWidget::pixRect() const
 QList<KPlotPoint *> KPlotWidget::pointsUnderPoint(const QPoint &p) const
 {
     QList<KPlotPoint *> pts;
-    Q_FOREACH (KPlotObject *po, d->objectList) {
-        Q_FOREACH (KPlotPoint *pp, po->points()) {
+    for (const KPlotObject *po : qAsConst(d->objectList)) {
+        const auto pointsList = po->points();
+        for (KPlotPoint *pp : pointsList) {
             if ((p - mapToWidget(pp->position()).toPoint()).manhattanLength() <= 4) {
                 pts << pp;
             }
@@ -720,7 +721,7 @@ void KPlotWidget::paintEvent(QPaintEvent *e)
 
     resetPlotMask();
 
-    Q_FOREACH (KPlotObject *po, d->objectList) {
+    for (KPlotObject *po : qAsConst(d->objectList)) {
         po->draw(&p, this);
     }
 
@@ -740,12 +741,14 @@ void KPlotWidget::drawAxes(QPainter *p)
 
         //Grid lines are placed at locations of primary axes' major tickmarks
         //vertical grid lines
-        Q_FOREACH (double xx, axis(BottomAxis)->majorTickMarks()) {
+        const QList<double> majMarks = axis(BottomAxis)->majorTickMarks();
+        for (const double xx : majMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             p->drawLine(QPointF(px, 0.0), QPointF(px, double(d->pixRect.height())));
         }
         //horizontal grid lines
-        Q_FOREACH (double yy, axis(LeftAxis)->majorTickMarks()) {
+        const QList<double> leftTickMarks = axis(LeftAxis)->majorTickMarks();
+        for (const double yy : leftTickMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - d->dataRect.y()) / d->dataRect.height());
             p->drawLine(QPointF(0.0, py), QPointF(double(d->pixRect.width()), py));
         }
@@ -767,7 +770,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         p->drawLine(0, d->pixRect.height(), d->pixRect.width(), d->pixRect.height());
 
         // Draw major tickmarks
-        Q_FOREACH (double xx, a->majorTickMarks()) {
+        const QList<double> majMarks = a->majorTickMarks();
+        for (const double xx : majMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             if (px > 0 && px < d->pixRect.width()) {
                 p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)),
@@ -782,7 +786,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
 
         // Draw minor tickmarks
-        Q_FOREACH (double xx, a->minorTickMarks()) {
+        const QList<double> minTickMarks = a->minorTickMarks();
+        for (const double xx : minTickMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             if (px > 0 && px < d->pixRect.width()) {
                 p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)),
@@ -804,7 +809,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         p->drawLine(0, 0, 0, d->pixRect.height());
 
         // Draw major tickmarks
-        Q_FOREACH (double yy, a->majorTickMarks()) {
+        const QList<double> majMarks = a->majorTickMarks();
+        for (const double yy : majMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - d->dataRect.y()) / d->dataRect.height());
             if (py > 0 && py < d->pixRect.height()) {
                 p->drawLine(QPointF(TICKOFFSET, py), QPointF(double(TICKOFFSET + BIGTICKSIZE), py));
@@ -818,7 +824,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
 
         // Draw minor tickmarks
-        Q_FOREACH (double yy, a->minorTickMarks()) {
+        const QList<double> minTickMarks = a->minorTickMarks();
+        for (const double yy : minTickMarks ) {
             double py = d->pixRect.height() * (1.0 - (yy - d->dataRect.y()) / d->dataRect.height());
             if (py > 0 && py < d->pixRect.height()) {
                 p->drawLine(QPointF(TICKOFFSET, py), QPointF(double(TICKOFFSET + SMALLTICKSIZE), py));
@@ -860,7 +867,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         p->drawLine(0, 0, d->pixRect.width(), 0);
 
         // Draw major tickmarks
-        Q_FOREACH (double xx, a->majorTickMarks()) {
+        const QList<double> majMarks = a->majorTickMarks();
+        for (const double xx : majMarks) {
             double px = d->pixRect.width() * (xx - x0) / dw;
             if (px > 0 && px < d->pixRect.width()) {
                 p->drawLine(QPointF(px, TICKOFFSET), QPointF(px, double(BIGTICKSIZE + TICKOFFSET)));
@@ -874,7 +882,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
 
         // Draw minor tickmarks
-        Q_FOREACH (double xx, a->minorTickMarks()) {
+        const QList<double> minMarks = a->minorTickMarks();
+        for (const double xx : minMarks) {
             double px = d->pixRect.width() * (xx - x0) / dw;
             if (px > 0 && px < d->pixRect.width()) {
                 p->drawLine(QPointF(px, TICKOFFSET), QPointF(px, double(SMALLTICKSIZE + TICKOFFSET)));
@@ -895,7 +904,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         p->drawLine(d->pixRect.width(), 0, d->pixRect.width(), d->pixRect.height());
 
         // Draw major tickmarks
-        Q_FOREACH (double yy, a->majorTickMarks()) {
+        const QList<double> majMarks = a->majorTickMarks();
+        for (const double yy : majMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - y0) / dh);
             if (py > 0 && py < d->pixRect.height()) {
                 p->drawLine(QPointF(double(d->pixRect.width() - TICKOFFSET), py),
@@ -910,7 +920,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
 
         // Draw minor tickmarks
-        Q_FOREACH (double yy, a->minorTickMarks()) {
+        const QList<double> minMarks = a->minorTickMarks();
+        for (const double yy : minMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - y0) / dh);
             if (py > 0 && py < d->pixRect.height()) {
                 p->drawLine(QPointF(double(d->pixRect.width() - 0.0), py),
