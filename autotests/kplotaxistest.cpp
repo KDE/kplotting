@@ -6,7 +6,7 @@
 
 #include <kplotaxis.h>
 
-#include <QtTest>
+#include <QTest>
 
 class KPlotAxisTest : public QObject
 {

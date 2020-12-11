@@ -7,7 +7,7 @@
 #include <kplotobject.h>
 #include <kplotpoint.h>
 
-#include <QtTest>
+#include <QTest>
 #include <QBrush>
 #include <QPen>
 

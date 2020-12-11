@@ -6,7 +6,7 @@
 
 #include <kplotpoint.h>
 
-#include <QtTest>
+#include <QTest>
 
 class KPlotPointTest : public QObject
 {
