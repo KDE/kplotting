@@ -37,7 +37,7 @@ TestPlot::TestPlot(QWidget *p) : QMainWindow(p), po1(nullptr), po2(nullptr)
 
     setCentralWidget(w);
 
-    connect(PlotSelector, SIGNAL(activated(int)), this, SLOT(slotSelectPlot(int)));
+    connect(PlotSelector, QOverload<int>::of(&QComboBox::activated), this, &TestPlot::slotSelectPlot);
 
     slotSelectPlot(PlotSelector->currentIndex());
 }

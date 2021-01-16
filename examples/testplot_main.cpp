@@ -13,6 +13,5 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     TestPlot *tp = new TestPlot(nullptr);
     tp->show();
-    QObject::connect(qApp, SIGNAL(lastWindowClosed()), qApp, SLOT(quit()));
     return a.exec();
 }
