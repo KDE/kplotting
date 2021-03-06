@@ -53,7 +53,7 @@ public:
         UnknownType = 0,
         Points = 1,       ///< each KPlotPoint is represented with a drawn point
         Lines = 2,        ///< each KPlotPoint is connected with a line
-        Bars = 4          ///< each KPlotPoint is shown as a vertical bar
+        Bars = 4,          ///< each KPlotPoint is shown as a vertical bar
     };
     Q_DECLARE_FLAGS(PlotTypes, PlotType)
 
@@ -70,7 +70,7 @@ public:
         Hexagon = 6,
         Asterisk = 7,
         Star = 8,
-        UnknownPoint
+        UnknownPoint,
     };
 
     /**

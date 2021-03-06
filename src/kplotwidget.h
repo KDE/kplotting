@@ -95,7 +95,7 @@ public:
         LeftAxis = 0,  ///< the left axis
         BottomAxis,    ///< the bottom axis
         RightAxis,     ///< the right axis
-        TopAxis        ///< the top axis
+        TopAxis,        ///< the top axis
     };
 
     /**
