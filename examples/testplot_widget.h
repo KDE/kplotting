@@ -21,13 +21,14 @@ class TestPlot : public QMainWindow
 
 public:
     TestPlot(QWidget *parent = nullptr);
-    ~TestPlot() {}
+    ~TestPlot()
+    {
+    }
 
 public Q_SLOTS:
     void slotSelectPlot(int index);
 
 private:
-
     QVBoxLayout *vlay;
     QComboBox *PlotSelector;
     KPlotWidget *plot;

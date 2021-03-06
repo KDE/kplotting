@@ -10,8 +10,8 @@
 
 #include <kplotting_export.h>
 
-#include <QString>
 #include <QList>
+#include <QString>
 
 /**
  * @short Axis for KPlotWidget
@@ -24,7 +24,6 @@
 class KPLOTTING_EXPORT KPlotAxis
 {
 public:
-
     /**
      * Constructor, constructs an axis with the label @p label.
      */
@@ -130,7 +129,7 @@ public:
      * @sa setTickMarks()
      * @sa minorTickMarks()
      */
-    QList< double > majorTickMarks() const;
+    QList<double> majorTickMarks() const;
 
     /**
      * @return the list with the minor tickmarks
@@ -138,7 +137,7 @@ public:
      * @sa setTickMarks()
      * @sa majorTickMarks()
      */
-    QList< double > minorTickMarks() const;
+    QList<double> minorTickMarks() const;
 
 private:
     class Private;

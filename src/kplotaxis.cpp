@@ -101,47 +101,47 @@ void KPlotAxis::setTickMarks(double x0, double length)
     d->m_MajorTickMarks.clear();
     d->m_MinorTickMarks.clear();
 
-    //s is the power-of-ten factor of length:
-    //length = t * s; s = 10^(pwr).  e.g., length=350.0 then t=3.5, s = 100.0; pwr = 2.0
+    // s is the power-of-ten factor of length:
+    // length = t * s; s = 10^(pwr).  e.g., length=350.0 then t=3.5, s = 100.0; pwr = 2.0
     double pwr = 0.0;
     modf(log10(length), &pwr);
     double s = pow(10.0, pwr);
     double t = length / s;
 
-    double TickDistance = 0.0; //The distance between major tickmarks
-    int NumMajorTicks = 0; //will be between 3 and 5
-    int NumMinorTicks = 0; //The number of minor ticks between major ticks (will be 4 or 5)
+    double TickDistance = 0.0; // The distance between major tickmarks
+    int NumMajorTicks = 0; // will be between 3 and 5
+    int NumMinorTicks = 0; // The number of minor ticks between major ticks (will be 4 or 5)
 
-    //adjust s and t such that t is between 3 and 5:
+    // adjust s and t such that t is between 3 and 5:
     if (t < 3.0) {
         t *= 10.0;
         s /= 10.0;
         // t is now between 3 and 30
     }
 
-    if (t < 6.0) {   //accept current values
+    if (t < 6.0) { // accept current values
         TickDistance = s;
         NumMajorTicks = int(t);
         NumMinorTicks = 5;
-    } else if (t < 10.0) {   // adjust by a factor of 2
+    } else if (t < 10.0) { // adjust by a factor of 2
         TickDistance = s * 2.0;
         NumMajorTicks = int(t / 2.0);
         NumMinorTicks = 4;
-    } else if (t < 20.0) {   //adjust by a factor of 4
+    } else if (t < 20.0) { // adjust by a factor of 4
         TickDistance = s * 4.0;
         NumMajorTicks = int(t / 4.0);
         NumMinorTicks = 4;
-    } else { //adjust by a factor of 5
+    } else { // adjust by a factor of 5
         TickDistance = s * 5.0;
         NumMajorTicks = int(t / 5.0);
         NumMinorTicks = 5;
     }
 
-    //We have determined the number of tickmarks and their separation
-    //Now we determine their positions in the Data space.
+    // We have determined the number of tickmarks and their separation
+    // Now we determine their positions in the Data space.
 
-    //Tick0 is the position of a "virtual" tickmark; the first major tickmark
-    //position beyond the "minimum" edge of the data range.
+    // Tick0 is the position of a "virtual" tickmark; the first major tickmark
+    // position beyond the "minimum" edge of the data range.
     double Tick0 = x0 - fmod(x0, TickDistance);
     if (x0 < 0.0) {
         Tick0 -= TickDistance;
@@ -166,7 +166,7 @@ void KPlotAxis::setTickMarks(double x0, double length)
 QString KPlotAxis::tickLabel(double val) const
 {
     if (d->m_labelFmt == 't') {
-        while (val <   0.0) {
+        while (val < 0.0) {
             val += 24.0;
         }
         while (val >= 24.0) {
@@ -174,20 +174,19 @@ QString KPlotAxis::tickLabel(double val) const
         }
 
         int h = int(val);
-        int m = int(60.*(val - h));
+        int m = int(60. * (val - h));
         return QStringLiteral("%1:%2").arg(h, 2, 10, QLatin1Char('0')).arg(m, 2, 10, QLatin1Char('0'));
     }
 
     return QStringLiteral("%1").arg(val, d->m_labelFieldWidth, d->m_labelFmt, d->m_labelPrec);
 }
 
-QList< double > KPlotAxis::majorTickMarks() const
+QList<double> KPlotAxis::majorTickMarks() const
 {
     return d->m_MajorTickMarks;
 }
 
-QList< double > KPlotAxis::minorTickMarks() const
+QList<double> KPlotAxis::minorTickMarks() const
 {
     return d->m_MinorTickMarks;
 }
-

@@ -7,9 +7,9 @@
 #include <kplotobject.h>
 #include <kplotpoint.h>
 
-#include <QTest>
 #include <QBrush>
 #include <QPen>
+#include <QTest>
 
 static const QColor DEFAULT_COLOR = Qt::blue;
 static const QColor MODIFIED_COLOR = Qt::red;

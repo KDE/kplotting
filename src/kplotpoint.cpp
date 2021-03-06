@@ -7,14 +7,17 @@
 
 #include "kplotpoint.h"
 
-#include <QtAlgorithms>
 #include <QPointF>
+#include <QtAlgorithms>
 
 class KPlotPoint::Private
 {
 public:
     Private(KPlotPoint *qq, const QPointF &p, const QString &l, double bw)
-        : q(qq), point(p), label(l), barWidth(bw)
+        : q(qq)
+        , point(p)
+        , label(l)
+        , barWidth(bw)
     {
     }
 

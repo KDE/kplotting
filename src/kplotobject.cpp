@@ -7,9 +7,9 @@
 
 #include "kplotobject.h"
 
-#include <QtAlgorithms>
-#include <QPainter>
 #include <QDebug>
+#include <QPainter>
+#include <QtAlgorithms>
 
 #include "kplotpoint.h"
 #include "kplotwidget.h"
@@ -40,7 +40,7 @@ public:
 KPlotObject::KPlotObject(const QColor &c, PlotType t, double size, PointStyle ps)
     : d(new Private(this))
 {
-    //By default, all pens and brushes are set to the given color
+    // By default, all pens and brushes are set to the given color
     setBrush(c);
     setBarBrush(c);
     setPen(QPen(brush(), 1));
@@ -170,7 +170,7 @@ void KPlotObject::setBarBrush(const QBrush &b)
     d->barBrush = b;
 }
 
-QList< KPlotPoint * > KPlotObject::points() const
+QList<KPlotPoint *> KPlotObject::points() const
 {
     return d->pList;
 }
@@ -196,7 +196,7 @@ void KPlotObject::addPoint(double x, double y, const QString &label, double barW
 void KPlotObject::removePoint(int index)
 {
     if ((index < 0) || (index >= d->pList.count())) {
-        //qWarning() << "KPlotObject::removePoint(): index " << index << " out of range!";
+        // qWarning() << "KPlotObject::removePoint(): index " << index << " out of range!";
         return;
     }
 
@@ -211,8 +211,8 @@ void KPlotObject::clearPoints()
 
 void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 {
-    //Order of drawing determines z-distance: Bars in the back, then lines,
-    //then points, then labels.
+    // Order of drawing determines z-distance: Bars in the back, then lines,
+    // then points, then labels.
 
     if (d->type & Bars) {
         painter->setPen(barPen());
@@ -224,7 +224,7 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
                 if (i < d->pList.size() - 1) {
                     w = d->pList[i + 1]->x() - d->pList[i]->x();
                 }
-                //For the last bin, we'll just keep the previous width
+                // For the last bin, we'll just keep the previous width
 
             } else {
                 w = d->pList[i]->barWidth();
@@ -242,17 +242,17 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
         }
     }
 
-    //Draw lines:
+    // Draw lines:
     if (d->type & Lines) {
         painter->setPen(linePen());
 
-        QPointF Previous = QPointF();  //Initialize to null
+        QPointF Previous = QPointF(); // Initialize to null
 
         for (const KPlotPoint *pp : qAsConst(d->pList)) {
-            //q is the position of the point in screen pixel coordinates
+            // q is the position of the point in screen pixel coordinates
             QPointF q = pw->mapToWidget(pp->position());
 
-            if (! Previous.isNull()) {
+            if (!Previous.isNull()) {
                 painter->drawLine(Previous, q);
                 pw->maskAlongLine(Previous, q);
             }
@@ -261,18 +261,17 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
         }
     }
 
-    //Draw points:
+    // Draw points:
     if (d->type & Points) {
-
         for (const KPlotPoint *pp : qAsConst(d->pList)) {
-            //q is the position of the point in screen pixel coordinates
+            // q is the position of the point in screen pixel coordinates
             QPointF q = pw->mapToWidget(pp->position());
             if (pw->pixRect().contains(q.toPoint(), false)) {
                 double x1 = q.x() - size();
                 double y1 = q.y() - size();
                 QRectF qr = QRectF(x1, y1, 2 * size(), 2 * size());
 
-                //Mask out this rect in the plot for label avoidance
+                // Mask out this rect in the plot for label avoidance
                 pw->maskRect(qr, 2.0);
 
                 painter->setPen(pen());
@@ -289,9 +288,7 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
                 case Triangle: {
                     QPolygonF tri;
-                    tri << QPointF(q.x() - size(), q.y() + size())
-                        << QPointF(q.x(), q.y() - size())
-                        << QPointF(q.x() + size(), q.y() + size());
+                    tri << QPointF(q.x() - size(), q.y() + size()) << QPointF(q.x(), q.y() - size()) << QPointF(q.x() + size(), q.y() + size());
                     painter->drawPolygon(tri);
                     break;
                 }
@@ -302,23 +299,16 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
                 case Pentagon: {
                     QPolygonF pent;
-                    pent << QPointF(q.x(), q.y() - size())
-                         << QPointF(q.x() + size(), q.y() - 0.309 * size())
-                         << QPointF(q.x() + 0.588 * size(), q.y() + size())
-                         << QPointF(q.x() - 0.588 * size(), q.y() + size())
-                         << QPointF(q.x() - size(), q.y() - 0.309 * size());
+                    pent << QPointF(q.x(), q.y() - size()) << QPointF(q.x() + size(), q.y() - 0.309 * size()) << QPointF(q.x() + 0.588 * size(), q.y() + size())
+                         << QPointF(q.x() - 0.588 * size(), q.y() + size()) << QPointF(q.x() - size(), q.y() - 0.309 * size());
                     painter->drawPolygon(pent);
                     break;
                 }
 
                 case Hexagon: {
                     QPolygonF hex;
-                    hex << QPointF(q.x(), q.y() + size())
-                        << QPointF(q.x() + size(), q.y() + 0.5 * size())
-                        << QPointF(q.x() + size(), q.y() - 0.5 * size())
-                        << QPointF(q.x(), q.y() - size())
-                        << QPointF(q.x() - size(), q.y() + 0.5 * size())
-                        << QPointF(q.x() - size(), q.y() - 0.5 * size());
+                    hex << QPointF(q.x(), q.y() + size()) << QPointF(q.x() + size(), q.y() + 0.5 * size()) << QPointF(q.x() + size(), q.y() - 0.5 * size())
+                        << QPointF(q.x(), q.y() - size()) << QPointF(q.x() - size(), q.y() + 0.5 * size()) << QPointF(q.x() - size(), q.y() - 0.5 * size());
                     painter->drawPolygon(hex);
                     break;
                 }
@@ -334,16 +324,11 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
                 case Star: {
                     QPolygonF star;
-                    star << QPointF(q.x(), q.y() - size())
-                         << QPointF(q.x() + 0.2245 * size(), q.y() - 0.309 * size())
-                         << QPointF(q.x() + size(), q.y() - 0.309 * size())
-                         << QPointF(q.x() + 0.363 * size(), q.y() + 0.118 * size())
-                         << QPointF(q.x() + 0.588 * size(), q.y() + size())
-                         << QPointF(q.x(), q.y() + 0.382 * size())
-                         << QPointF(q.x() - 0.588 * size(), q.y() + size())
-                         << QPointF(q.x() - 0.363 * size(), q.y() + 0.118 * size())
-                         << QPointF(q.x() - size(), q.y() - 0.309 * size())
-                         << QPointF(q.x() - 0.2245 * size(), q.y() - 0.309 * size());
+                    star << QPointF(q.x(), q.y() - size()) << QPointF(q.x() + 0.2245 * size(), q.y() - 0.309 * size())
+                         << QPointF(q.x() + size(), q.y() - 0.309 * size()) << QPointF(q.x() + 0.363 * size(), q.y() + 0.118 * size())
+                         << QPointF(q.x() + 0.588 * size(), q.y() + size()) << QPointF(q.x(), q.y() + 0.382 * size())
+                         << QPointF(q.x() - 0.588 * size(), q.y() + size()) << QPointF(q.x() - 0.363 * size(), q.y() + 0.118 * size())
+                         << QPointF(q.x() - size(), q.y() - 0.309 * size()) << QPointF(q.x() - 0.2245 * size(), q.y() - 0.309 * size());
                     painter->drawPolygon(star);
                     break;
                 }
@@ -355,14 +340,13 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
         }
     }
 
-    //Draw labels
+    // Draw labels
     painter->setPen(labelPen());
 
     for (KPlotPoint *pp : qAsConst(d->pList)) {
         QPoint q = pw->mapToWidget(pp->position()).toPoint();
-        if (pw->pixRect().contains(q, false) && ! pp->label().isEmpty()) {
+        if (pw->pixRect().contains(q, false) && !pp->label().isEmpty()) {
             pw->placeLabel(painter, pp);
         }
     }
-
 }

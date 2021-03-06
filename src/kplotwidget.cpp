@@ -16,8 +16,8 @@
 #include <QtAlgorithms>
 
 #include "kplotaxis.h"
-#include "kplotpoint.h"
 #include "kplotobject.h"
+#include "kplotpoint.h"
 
 #define XPADDING 20
 #define YPADDING 20
@@ -29,9 +29,14 @@ class Q_DECL_HIDDEN KPlotWidget::Private
 {
 public:
     Private(KPlotWidget *qq)
-        : q(qq),
-          cBackground(Qt::black), cForeground(Qt::white), cGrid(Qt::gray),
-          showGrid(false), showObjectToolTip(true), useAntialias(false), autoDelete(true)
+        : q(qq)
+        , cBackground(Qt::black)
+        , cForeground(Qt::white)
+        , cGrid(Qt::gray)
+        , showGrid(false)
+        , showObjectToolTip(true)
+        , useAntialias(false)
+        , autoDelete(true)
     {
         // create the axes and setting their default properties
         KPlotAxis *leftAxis = new KPlotAxis();
@@ -67,14 +72,14 @@ public:
      */
     float rectCost(const QRectF &r) const;
 
-    //Colors
+    // Colors
     QColor cBackground, cForeground, cGrid;
-    //draw options
+    // draw options
     bool showGrid;
     bool showObjectToolTip;
     bool useAntialias;
     bool autoDelete;
-    //padding
+    // padding
     int leftPadding, rightPadding, topPadding, bottomPadding;
     // hashmap with the axes we have
     QHash<Axis, KPlotAxis *> axes;
@@ -84,17 +89,18 @@ public:
     QRectF dataRect, secondDataRect;
     // Limits of the plot area in pixel units
     QRect pixRect;
-    //Array holding the mask of "used" regions of the plot
+    // Array holding the mask of "used" regions of the plot
     QImage plotMask;
 };
 
 KPlotWidget::KPlotWidget(QWidget *parent)
-    : QFrame(parent), d(new Private(this))
+    : QFrame(parent)
+    , d(new Private(this))
 {
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
 
-    d->secondDataRect = QRectF(); //default: no secondary data rect
+    d->secondDataRect = QRectF(); // default: no secondary data rect
     // sets the default limits
     d->calcDataRectLimits(0.0, 1.0, 0.0, 1.0);
 
@@ -141,11 +147,11 @@ void KPlotWidget::Private::calcDataRectLimits(double x1, double x2, double y1, d
     }
 
     if (XA2 == XA1) {
-        //qWarning() << "x1 and x2 cannot be equal. Setting x2 = x1 + 1.0";
+        // qWarning() << "x1 and x2 cannot be equal. Setting x2 = x1 + 1.0";
         XA2 = XA1 + 1.0;
     }
     if (YA2 == YA1) {
-        //qWarning() << "y1 and y2 cannot be equal. Setting y2 = y1 + 1.0";
+        // qWarning() << "y1 and y2 cannot be equal. Setting y2 = y1 + 1.0";
         YA2 = YA1 + 1.0;
     }
     dataRect = QRectF(XA1, YA1, XA2 - XA1, YA2 - YA1);
@@ -178,11 +184,11 @@ void KPlotWidget::setSecondaryLimits(double x1, double x2, double y1, double y2)
     }
 
     if (XA2 == XA1) {
-        //qWarning() << "x1 and x2 cannot be equal. Setting x2 = x1 + 1.0";
+        // qWarning() << "x1 and x2 cannot be equal. Setting x2 = x1 + 1.0";
         XA2 = XA1 + 1.0;
     }
     if (YA2 == YA1) {
-        //qWarning() << "y1 and y2 cannot be equal. Setting y2 = y1 + 1.0";
+        // qWarning() << "y1 and y2 cannot be equal. Setting y2 = y1 + 1.0";
         YA2 = YA1 + 1.0;
     }
     d->secondDataRect = QRectF(XA1, YA1, XA2 - XA1, YA2 - YA1);
@@ -222,7 +228,7 @@ void KPlotWidget::addPlotObject(KPlotObject *object)
     update();
 }
 
-void KPlotWidget::addPlotObjects(const QList< KPlotObject * > &objects)
+void KPlotWidget::addPlotObjects(const QList<KPlotObject *> &objects)
 {
     bool addedsome = false;
     for (KPlotObject *o : objects) {
@@ -238,7 +244,7 @@ void KPlotWidget::addPlotObjects(const QList< KPlotObject * > &objects)
     }
 }
 
-QList< KPlotObject * > KPlotWidget::plotObjects() const
+QList<KPlotObject *> KPlotWidget::plotObjects() const
 {
     return d->objectList;
 }
@@ -453,24 +459,23 @@ void KPlotWidget::maskRect(const QRectF &rf, float fvalue)
             d->plotMask.setPixel(ix, iy, newColor.rgba());
         }
     }
-
 }
 
 void KPlotWidget::maskAlongLine(const QPointF &p1, const QPointF &p2, float fvalue)
 {
-    if (! d->pixRect.contains(p1.toPoint()) && ! d->pixRect.contains(p2.toPoint())) {
+    if (!d->pixRect.contains(p1.toPoint()) && !d->pixRect.contains(p2.toPoint())) {
         return;
     }
 
     int value = int(fvalue);
 
-    //Determine slope and zeropoint of line
+    // Determine slope and zeropoint of line
     double m = (p2.y() - p1.y()) / (p2.x() - p1.x());
     double y0 = p1.y() - m * p1.x();
     QColor newColor;
 
-    //Mask each pixel along the line joining p1 and p2
-    if (m > 1.0 || m < -1.0) {   //step in y-direction
+    // Mask each pixel along the line joining p1 and p2
+    if (m > 1.0 || m < -1.0) { // step in y-direction
         int y1 = int(p1.y());
         int y2 = int(p2.y());
         if (y1 > y2) {
@@ -488,7 +493,7 @@ void KPlotWidget::maskAlongLine(const QPointF &p1, const QPointF &p2, float fval
             }
         }
 
-    } else { //step in x-direction
+    } else { // step in x-direction
         int x1 = int(p1.x());
         int x2 = int(p2.x());
         if (x1 > x2) {
@@ -508,23 +513,23 @@ void KPlotWidget::maskAlongLine(const QPointF &p1, const QPointF &p2, float fval
     }
 }
 
-//Determine optimal placement for a text label for point pp.  We want
-//the label to be near point pp, but we don't want it to overlap with
-//other labels or plot elements.  We will use a "downhill simplex"
-//algorithm to find a label position that minimizes the pixel values
-//in the plotMask image over the label's rect().  The sum of pixel
-//values in the label's rect is the "cost" of placing the label there.
+// Determine optimal placement for a text label for point pp.  We want
+// the label to be near point pp, but we don't want it to overlap with
+// other labels or plot elements.  We will use a "downhill simplex"
+// algorithm to find a label position that minimizes the pixel values
+// in the plotMask image over the label's rect().  The sum of pixel
+// values in the label's rect is the "cost" of placing the label there.
 //
-//Because a downhill simplex follows the local gradient to find low
-//values, it can get stuck in local minima.  To mitigate this, we will
-//iteratively attempt each of the initial path offset directions (up,
-//down, right, left) in the order of increasing cost at each location.
+// Because a downhill simplex follows the local gradient to find low
+// values, it can get stuck in local minima.  To mitigate this, we will
+// iteratively attempt each of the initial path offset directions (up,
+// down, right, left) in the order of increasing cost at each location.
 void KPlotWidget::placeLabel(QPainter *painter, KPlotPoint *pp)
 {
     int textFlags = Qt::TextSingleLine | Qt::AlignCenter;
 
     QPointF pos = mapToWidget(pp->position());
-    if (! d->pixRect.contains(pos.toPoint())) {
+    if (!d->pixRect.contains(pos.toPoint())) {
         return;
     }
 
@@ -535,26 +540,26 @@ void KPlotWidget::placeLabel(QPainter *painter, KPlotPoint *pp)
     float maxCost = 0.05 * bestRect.width() * bestRect.height();
     float bestCost = d->rectCost(bestRect);
 
-    //We will travel along a path defined by the maximum decrease in
-    //the cost at each step.  If this path takes us to a local minimum
-    //whose cost exceeds maxCost, then we will restart at the
-    //beginning and select the next-best path.  The indices of
-    //already-tried paths are stored in the TriedPathIndex list.
+    // We will travel along a path defined by the maximum decrease in
+    // the cost at each step.  If this path takes us to a local minimum
+    // whose cost exceeds maxCost, then we will restart at the
+    // beginning and select the next-best path.  The indices of
+    // already-tried paths are stored in the TriedPathIndex list.
     //
-    //If we try all four first-step paths and still don't get below
-    //maxCost, then we'll adopt the local minimum position with the
-    //best cost (designated as bestBadCost).
+    // If we try all four first-step paths and still don't get below
+    // maxCost, then we'll adopt the local minimum position with the
+    // best cost (designated as bestBadCost).
     int iter = 0;
     QList<int> TriedPathIndex;
     float bestBadCost = 10000;
     QRectF bestBadRect;
 
-    //needed to halt iteration from inside the switch
+    // needed to halt iteration from inside the switch
     bool flagStop = false;
 
     while (bestCost > maxCost) {
-        //Displace the label up, down, left, right; determine which
-        //step provides the lowest cost
+        // Displace the label up, down, left, right; determine which
+        // step provides the lowest cost
         QRectF upRect = bestRect;
         upRect.moveTop(upRect.top() + yStep);
         float upCost = d->rectCost(upRect);
@@ -568,78 +573,77 @@ void KPlotWidget::placeLabel(QPainter *painter, KPlotPoint *pp)
         rightRect.moveLeft(rightRect.left() + xStep);
         float rightCost = d->rectCost(rightRect);
 
-        //which direction leads to the lowest cost?
+        // which direction leads to the lowest cost?
         QList<float> costList;
         costList << upCost << downCost << leftCost << rightCost;
         int imin = -1;
         for (int i = 0; i < costList.size(); ++i) {
             if (iter == 0 && TriedPathIndex.contains(i)) {
-                continue; //Skip this first-step path, we already tried it!
+                continue; // Skip this first-step path, we already tried it!
             }
 
-            //If this first-step path doesn't improve the cost,
-            //skip this direction from now on
+            // If this first-step path doesn't improve the cost,
+            // skip this direction from now on
             if (iter == 0 && costList[i] >= bestCost) {
                 TriedPathIndex.append(i);
                 continue;
             }
 
             if (costList[i] < bestCost && (imin < 0 || costList[i] < costList[imin])) {
-
                 imin = i;
             }
         }
 
-        //Make a note that we've tried the current first-step path
+        // Make a note that we've tried the current first-step path
         if (iter == 0 && imin >= 0) {
             TriedPathIndex.append(imin);
         }
 
-        //Adopt the step that produced the best cost
+        // Adopt the step that produced the best cost
         switch (imin) {
-        case 0: //up
+        case 0: // up
             bestRect.moveTop(upRect.top());
             bestCost = upCost;
             break;
-        case 1: //down
+        case 1: // down
             bestRect.moveTop(downRect.top());
             bestCost = downCost;
             break;
-        case 2: //left
+        case 2: // left
             bestRect.moveLeft(leftRect.left());
             bestCost = leftCost;
             break;
-        case 3: //right
+        case 3: // right
             bestRect.moveLeft(rightRect.left());
             bestCost = rightCost;
             break;
-        case -1: //no lower cost found!
-            //We hit a local minimum.  Keep the best of these as bestBadRect
+        case -1: // no lower cost found!
+            // We hit a local minimum.  Keep the best of these as bestBadRect
             if (bestCost < bestBadCost) {
                 bestBadCost = bestCost;
                 bestBadRect = bestRect;
             }
 
-            //If all of the first-step paths have now been searched, we'll
-            //have to adopt the bestBadRect
+            // If all of the first-step paths have now been searched, we'll
+            // have to adopt the bestBadRect
             if (TriedPathIndex.size() == 4) {
                 bestRect = bestBadRect;
-                flagStop = true; //halt iteration
+                flagStop = true; // halt iteration
                 break;
             }
 
-            //If we haven't yet tried all of the first-step paths, start over
+            // If we haven't yet tried all of the first-step paths, start over
             if (TriedPathIndex.size() < 4) {
-                iter = -1; //anticipating the ++iter below
+                iter = -1; // anticipating the ++iter below
                 bestRect = fm.boundingRect(QRectF(pos.x(), pos.y(), 1, 1), textFlags, pp->label());
                 bestCost = d->rectCost(bestRect);
             }
             break;
         }
 
-        //Halt iteration, because we've tried all directions and
-        //haven't gotten below maxCost (we'll adopt the best
-        //local minimum found)
+        // Halt iteration, because we've tried all directions and
+        // haven't gotten below maxCost (we'll adopt the best
+        // local minimum found)
         if (flagStop) {
             break;
         }
@@ -649,20 +653,20 @@ void KPlotWidget::placeLabel(QPainter *painter, KPlotPoint *pp)
 
     painter->drawText(bestRect, textFlags, pp->label());
 
-    //Is a line needed to connect the label to the point?
+    // Is a line needed to connect the label to the point?
     float deltax = pos.x() - bestRect.center().x();
     float deltay = pos.y() - bestRect.center().y();
     float rbest = sqrt(deltax * deltax + deltay * deltay);
     if (rbest > 20.0) {
-        //Draw a rectangle around the label
+        // Draw a rectangle around the label
         painter->setBrush(QBrush());
-        //QPen pen = painter->pen();
-        //pen.setStyle( Qt::DotLine );
-        //painter->setPen( pen );
+        // QPen pen = painter->pen();
+        // pen.setStyle( Qt::DotLine );
+        // painter->setPen( pen );
         painter->drawRoundedRect(bestRect, 25, 25, Qt::RelativeSize);
 
-        //Now connect the label to the point with a line.
-        //The line is drawn from the center of the near edge of the rectangle
+        // Now connect the label to the point with a line.
+        // The line is drawn from the center of the near edge of the rectangle
         float xline = bestRect.center().x();
         if (bestRect.left() > pos.x()) {
             xline = bestRect.left();
@@ -682,17 +686,17 @@ void KPlotWidget::placeLabel(QPainter *painter, KPlotPoint *pp)
         painter->drawLine(QPointF(xline, yline), pos);
     }
 
-    //Mask the label's rectangle so other labels won't overlap it.
+    // Mask the label's rectangle so other labels won't overlap it.
     maskRect(bestRect);
 }
 
 float KPlotWidget::Private::rectCost(const QRectF &r) const
 {
-    if (! plotMask.rect().contains(r.toRect())) {
+    if (!plotMask.rect().contains(r.toRect())) {
         return 10000.;
     }
 
-    //Compute sum of mask values in the rect r
+    // Compute sum of mask values in the rect r
     QImage subMask = plotMask.copy(r.toRect());
     int cost = 0;
     for (int ix = 0; ix < subMask.width(); ++ix) {
@@ -725,8 +729,8 @@ void KPlotWidget::paintEvent(QPaintEvent *e)
         po->draw(&p, this);
     }
 
-//DEBUG: Draw the plot mask
-//    p.drawImage( 0, 0, d->plotMask );
+    // DEBUG: Draw the plot mask
+    //    p.drawImage( 0, 0, d->plotMask );
 
     p.setClipping(false);
     drawAxes(&p);
@@ -739,14 +743,14 @@ void KPlotWidget::drawAxes(QPainter *p)
     if (d->showGrid) {
         p->setPen(gridColor());
 
-        //Grid lines are placed at locations of primary axes' major tickmarks
-        //vertical grid lines
+        // Grid lines are placed at locations of primary axes' major tickmarks
+        // vertical grid lines
         const QList<double> majMarks = axis(BottomAxis)->majorTickMarks();
         for (const double xx : majMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             p->drawLine(QPointF(px, 0.0), QPointF(px, double(d->pixRect.height())));
         }
-        //horizontal grid lines
+        // horizontal grid lines
         const QList<double> leftTickMarks = axis(LeftAxis)->majorTickMarks();
         for (const double yy : leftTickMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - d->dataRect.y()) / d->dataRect.height());
@@ -757,7 +761,7 @@ void KPlotWidget::drawAxes(QPainter *p)
     p->setPen(foregroundColor());
     p->setBrush(Qt::NoBrush);
 
-    //set small font for tick labels
+    // set small font for tick labels
     QFont f = p->font();
     int s = f.pointSize();
     f.setPointSize(s - 2);
@@ -766,7 +770,7 @@ void KPlotWidget::drawAxes(QPainter *p)
     /*** BottomAxis ***/
     KPlotAxis *a = axis(BottomAxis);
     if (a->isVisible()) {
-        //Draw axis line
+        // Draw axis line
         p->drawLine(0, d->pixRect.height(), d->pixRect.width(), d->pixRect.height());
 
         // Draw major tickmarks
@@ -774,10 +778,9 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double xx : majMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             if (px > 0 && px < d->pixRect.width()) {
-                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)),
-                            QPointF(px, double(d->pixRect.height() - BIGTICKSIZE - TICKOFFSET)));
+                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)), QPointF(px, double(d->pixRect.height() - BIGTICKSIZE - TICKOFFSET)));
 
-                //Draw ticklabel
+                // Draw ticklabel
                 if (a->areTickLabelsShown()) {
                     QRect r(int(px) - BIGTICKSIZE, d->pixRect.height() + BIGTICKSIZE, 2 * BIGTICKSIZE, BIGTICKSIZE);
                     p->drawText(r, Qt::AlignCenter | Qt::TextDontClip, a->tickLabel(xx));
@@ -790,22 +793,21 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double xx : minTickMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             if (px > 0 && px < d->pixRect.width()) {
-                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)),
-                            QPointF(px, double(d->pixRect.height() - SMALLTICKSIZE - TICKOFFSET)));
+                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)), QPointF(px, double(d->pixRect.height() - SMALLTICKSIZE - TICKOFFSET)));
             }
         }
 
         // Draw BottomAxis Label
-        if (! a->label().isEmpty()) {
+        if (!a->label().isEmpty()) {
             QRect r(0, d->pixRect.height() + 2 * YPADDING, d->pixRect.width(), YPADDING);
             p->drawText(r, Qt::AlignCenter, a->label());
         }
-    }  //End of BottomAxis
+    } // End of BottomAxis
 
     /*** LeftAxis ***/
     a = axis(LeftAxis);
     if (a->isVisible()) {
-        //Draw axis line
+        // Draw axis line
         p->drawLine(0, 0, 0, d->pixRect.height());
 
         // Draw major tickmarks
@@ -815,7 +817,7 @@ void KPlotWidget::drawAxes(QPainter *p)
             if (py > 0 && py < d->pixRect.height()) {
                 p->drawLine(QPointF(TICKOFFSET, py), QPointF(double(TICKOFFSET + BIGTICKSIZE), py));
 
-                //Draw ticklabel
+                // Draw ticklabel
                 if (a->areTickLabelsShown()) {
                     QRect r(-2 * BIGTICKSIZE - SMALLTICKSIZE, int(py) - SMALLTICKSIZE, 2 * BIGTICKSIZE, 2 * SMALLTICKSIZE);
                     p->drawText(r, Qt::AlignRight | Qt::AlignVCenter | Qt::TextDontClip, a->tickLabel(yy));
@@ -825,30 +827,30 @@ void KPlotWidget::drawAxes(QPainter *p)
 
         // Draw minor tickmarks
         const QList<double> minTickMarks = a->minorTickMarks();
-        for (const double yy : minTickMarks ) {
+        for (const double yy : minTickMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - d->dataRect.y()) / d->dataRect.height());
             if (py > 0 && py < d->pixRect.height()) {
                 p->drawLine(QPointF(TICKOFFSET, py), QPointF(double(TICKOFFSET + SMALLTICKSIZE), py));
             }
         }
 
-        //Draw LeftAxis Label.  We need to draw the text sideways.
-        if (! a->label().isEmpty()) {
-            //store current painter translation/rotation state
+        // Draw LeftAxis Label.  We need to draw the text sideways.
+        if (!a->label().isEmpty()) {
+            // store current painter translation/rotation state
             p->save();
 
-            //translate coord sys to left corner of axis label rectangle, then rotate 90 degrees.
+            // translate coord sys to left corner of axis label rectangle, then rotate 90 degrees.
             p->translate(-3 * XPADDING, d->pixRect.height());
             p->rotate(-90.0);
 
             QRect r(0, 0, d->pixRect.height(), XPADDING);
-            p->drawText(r, Qt::AlignCenter, a->label());   //draw the label, now that we are sideways
+            p->drawText(r, Qt::AlignCenter, a->label()); // draw the label, now that we are sideways
 
-            p->restore();  //restore translation/rotation state
+            p->restore(); // restore translation/rotation state
         }
-    }  //End of LeftAxis
+    } // End of LeftAxis
 
-    //Prepare for top and right axes; we may need the secondary data rect
+    // Prepare for top and right axes; we may need the secondary data rect
     double x0 = d->dataRect.x();
     double y0 = d->dataRect.y();
     double dw = d->dataRect.width();
@@ -863,7 +865,7 @@ void KPlotWidget::drawAxes(QPainter *p)
     /*** TopAxis ***/
     a = axis(TopAxis);
     if (a->isVisible()) {
-        //Draw axis line
+        // Draw axis line
         p->drawLine(0, 0, d->pixRect.width(), 0);
 
         // Draw major tickmarks
@@ -873,9 +875,9 @@ void KPlotWidget::drawAxes(QPainter *p)
             if (px > 0 && px < d->pixRect.width()) {
                 p->drawLine(QPointF(px, TICKOFFSET), QPointF(px, double(BIGTICKSIZE + TICKOFFSET)));
 
-                //Draw ticklabel
+                // Draw ticklabel
                 if (a->areTickLabelsShown()) {
-                    QRect r(int(px) - BIGTICKSIZE, (int) - 1.5 * BIGTICKSIZE, 2 * BIGTICKSIZE, BIGTICKSIZE);
+                    QRect r(int(px) - BIGTICKSIZE, (int)-1.5 * BIGTICKSIZE, 2 * BIGTICKSIZE, BIGTICKSIZE);
                     p->drawText(r, Qt::AlignCenter | Qt::TextDontClip, a->tickLabel(xx));
                 }
             }
@@ -891,16 +893,16 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
 
         // Draw TopAxis Label
-        if (! a->label().isEmpty()) {
+        if (!a->label().isEmpty()) {
             QRect r(0, 0 - 3 * YPADDING, d->pixRect.width(), YPADDING);
             p->drawText(r, Qt::AlignCenter, a->label());
         }
-    }  //End of TopAxis
+    } // End of TopAxis
 
     /*** RightAxis ***/
     a = axis(RightAxis);
     if (a->isVisible()) {
-        //Draw axis line
+        // Draw axis line
         p->drawLine(d->pixRect.width(), 0, d->pixRect.width(), d->pixRect.height());
 
         // Draw major tickmarks
@@ -908,10 +910,9 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double yy : majMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - y0) / dh);
             if (py > 0 && py < d->pixRect.height()) {
-                p->drawLine(QPointF(double(d->pixRect.width() - TICKOFFSET), py),
-                            QPointF(double(d->pixRect.width() - TICKOFFSET - BIGTICKSIZE), py));
+                p->drawLine(QPointF(double(d->pixRect.width() - TICKOFFSET), py), QPointF(double(d->pixRect.width() - TICKOFFSET - BIGTICKSIZE), py));
 
-                //Draw ticklabel
+                // Draw ticklabel
                 if (a->areTickLabelsShown()) {
                     QRect r(d->pixRect.width() + SMALLTICKSIZE, int(py) - SMALLTICKSIZE, 2 * BIGTICKSIZE, 2 * SMALLTICKSIZE);
                     p->drawText(r, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextDontClip, a->tickLabel(yy));
@@ -924,26 +925,25 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double yy : minMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - y0) / dh);
             if (py > 0 && py < d->pixRect.height()) {
-                p->drawLine(QPointF(double(d->pixRect.width() - 0.0), py),
-                            QPointF(double(d->pixRect.width() - 0.0 - SMALLTICKSIZE), py));
+                p->drawLine(QPointF(double(d->pixRect.width() - 0.0), py), QPointF(double(d->pixRect.width() - 0.0 - SMALLTICKSIZE), py));
             }
         }
 
-        //Draw RightAxis Label.  We need to draw the text sideways.
-        if (! a->label().isEmpty()) {
-            //store current painter translation/rotation state
+        // Draw RightAxis Label.  We need to draw the text sideways.
+        if (!a->label().isEmpty()) {
+            // store current painter translation/rotation state
             p->save();
 
-            //translate coord sys to left corner of axis label rectangle, then rotate 90 degrees.
+            // translate coord sys to left corner of axis label rectangle, then rotate 90 degrees.
             p->translate(d->pixRect.width() + 2 * XPADDING, d->pixRect.height());
             p->rotate(-90.0);
 
             QRect r(0, 0, d->pixRect.height(), XPADDING);
-            p->drawText(r, Qt::AlignCenter, a->label());   //draw the label, now that we are sideways
+            p->drawText(r, Qt::AlignCenter, a->label()); // draw the label, now that we are sideways
 
-            p->restore();  //restore translation/rotation state
+            p->restore(); // restore translation/rotation state
         }
-    }  //End of RightAxis
+    } // End of RightAxis
 }
 
 int KPlotWidget::leftPadding() const
@@ -1021,4 +1021,3 @@ void KPlotWidget::setDefaultPaddings()
     d->topPadding = -1;
     d->bottomPadding = -1;
 }
-

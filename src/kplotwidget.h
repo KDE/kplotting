@@ -92,10 +92,10 @@ public:
      * The four types of plot axes.
      */
     enum Axis {
-        LeftAxis = 0,  ///< the left axis
-        BottomAxis,    ///< the bottom axis
-        RightAxis,     ///< the right axis
-        TopAxis,        ///< the top axis
+        LeftAxis = 0, ///< the left axis
+        BottomAxis, ///< the bottom axis
+        RightAxis, ///< the right axis
+        TopAxis, ///< the top axis
     };
 
     /**
@@ -165,7 +165,7 @@ public:
     /**
      * @return the rectangle representing the boundaries of the current plot,
      * in screen pixel units.
-      */
+     */
     QRect pixRect() const;
 
     /**
@@ -180,12 +180,12 @@ public:
      * The widget takes ownership of the plot object, unless auto-delete was disabled.
      * @param objects the list of KPlotObjects to be added
      */
-    void addPlotObjects(const QList< KPlotObject * > &objects);
+    void addPlotObjects(const QList<KPlotObject *> &objects);
 
     /**
      * @return the current list of plot objects
      */
-    QList< KPlotObject * > plotObjects() const;
+    QList<KPlotObject *> plotObjects() const;
 
     /**
      * Enables auto-deletion of plot objects if autoDelete is true; otherwise auto-deletion is disabled.

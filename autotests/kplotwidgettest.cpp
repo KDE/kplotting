@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <kplotwidget.h>
 #include <kplotobject.h>
+#include <kplotwidget.h>
 
 #include <qtest_widgets.h>
 
@@ -54,7 +54,7 @@ private Q_SLOTS:
     void testAddPlotObjects()
     {
         // Add objects
-        QList< KPlotObject * > list;
+        QList<KPlotObject *> list;
         list << new KPlotObject(Qt::red) << new KPlotObject(Qt::green) << new KPlotObject(Qt::blue);
 
         widget->addPlotObjects(list);
@@ -70,7 +70,7 @@ private Q_SLOTS:
     void testRemoveAllObjects()
     {
         // Add objects
-        QList< KPlotObject * > list;
+        QList<KPlotObject *> list;
         list << new KPlotObject() << new KPlotObject() << new KPlotObject();
 
         widget->removeAllPlotObjects();
@@ -79,7 +79,7 @@ private Q_SLOTS:
 
     void testReplacePlotObject()
     {
-        QList< KPlotObject * > list;
+        QList<KPlotObject *> list;
         list << new KPlotObject(Qt::red) << new KPlotObject(Qt::green) << new KPlotObject(Qt::blue);
 
         widget->addPlotObjects(list);

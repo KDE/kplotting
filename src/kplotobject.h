@@ -10,8 +10,8 @@
 
 #include <kplotting_export.h>
 
-#include <QString>
 #include <QColor>
+#include <QString>
 
 class QBrush;
 class QPainter;
@@ -51,9 +51,9 @@ public:
      */
     enum PlotType {
         UnknownType = 0,
-        Points = 1,       ///< each KPlotPoint is represented with a drawn point
-        Lines = 2,        ///< each KPlotPoint is connected with a line
-        Bars = 4,          ///< each KPlotPoint is shown as a vertical bar
+        Points = 1, ///< each KPlotPoint is represented with a drawn point
+        Lines = 2, ///< each KPlotPoint is connected with a line
+        Bars = 4, ///< each KPlotPoint is shown as a vertical bar
     };
     Q_DECLARE_FLAGS(PlotTypes, PlotType)
 
@@ -205,7 +205,7 @@ public:
     /**
      * @return the list of KPlotPoints that make up this object
      */
-    QList< KPlotPoint * > points() const;
+    QList<KPlotPoint *> points() const;
 
     /**
      * Add a point to the object's list of points, using input data to construct a KPlotPoint.
@@ -213,7 +213,7 @@ public:
      * @param label the optional text label for this point
      * @param barWidth the width of the bar, if this object is to be drawn with bars
      * @note if @param barWidth is left at its default value of 0.0, then the width will be
-         * automatically set to the distance between this point and the one to its right.
+     * automatically set to the distance between this point and the one to its right.
      */
     void addPoint(const QPointF &p, const QString &label = QString(), double barWidth = 0.0);
 
@@ -232,7 +232,7 @@ public:
      * @param label the optional text label
      * @param barWidth the width of the bar, if this object is to be drawn with bars
      * @note if @param barWidth is left at its default value of 0.0, then the width will be
-         * automatically set to the distance between this point and the one to its right.
+     * automatically set to the distance between this point and the one to its right.
      */
     void addPoint(double x, double y, const QString &label = QString(), double barWidth = 0.0);
 
