@@ -288,7 +288,11 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
                 case Triangle: {
                     QPolygonF tri;
-                    tri << QPointF(q.x() - size(), q.y() + size()) << QPointF(q.x(), q.y() - size()) << QPointF(q.x() + size(), q.y() + size());
+                    /* clang-format off */
+                    tri << QPointF(q.x() - size(), q.y() + size())
+                        << QPointF(q.x(), q.y() - size())
+                        << QPointF(q.x() + size(), q.y() + size());
+                    /* clang-format on */
                     painter->drawPolygon(tri);
                     break;
                 }
@@ -299,16 +303,27 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
                 case Pentagon: {
                     QPolygonF pent;
-                    pent << QPointF(q.x(), q.y() - size()) << QPointF(q.x() + size(), q.y() - 0.309 * size()) << QPointF(q.x() + 0.588 * size(), q.y() + size())
-                         << QPointF(q.x() - 0.588 * size(), q.y() + size()) << QPointF(q.x() - size(), q.y() - 0.309 * size());
+                    /* clang-format off */
+                    pent << QPointF(q.x(), q.y() - size())
+                         << QPointF(q.x() + size(), q.y() - 0.309 * size())
+                         << QPointF(q.x() + 0.588 * size(), q.y() + size())
+                         << QPointF(q.x() - 0.588 * size(), q.y() + size())
+                         << QPointF(q.x() - size(), q.y() - 0.309 * size());
+                    /* clang-format on */
                     painter->drawPolygon(pent);
                     break;
                 }
 
                 case Hexagon: {
                     QPolygonF hex;
-                    hex << QPointF(q.x(), q.y() + size()) << QPointF(q.x() + size(), q.y() + 0.5 * size()) << QPointF(q.x() + size(), q.y() - 0.5 * size())
-                        << QPointF(q.x(), q.y() - size()) << QPointF(q.x() - size(), q.y() + 0.5 * size()) << QPointF(q.x() - size(), q.y() - 0.5 * size());
+                    /* clang-format off */
+                    hex << QPointF(q.x(), q.y() + size())
+                        << QPointF(q.x() + size(), q.y() + 0.5 * size())
+                        << QPointF(q.x() + size(), q.y() - 0.5 * size())
+                        << QPointF(q.x(), q.y() - size())
+                        << QPointF(q.x() - size(), q.y() + 0.5 * size())
+                        << QPointF(q.x() - size(), q.y() - 0.5 * size());
+                    /* clang-format on */
                     painter->drawPolygon(hex);
                     break;
                 }
@@ -324,11 +339,14 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
                 case Star: {
                     QPolygonF star;
-                    star << QPointF(q.x(), q.y() - size()) << QPointF(q.x() + 0.2245 * size(), q.y() - 0.309 * size())
+                    /* clang-format off */
+                    star << QPointF(q.x(), q.y() - size())
+                         << QPointF(q.x() + 0.2245 * size(), q.y() - 0.309 * size())
                          << QPointF(q.x() + size(), q.y() - 0.309 * size()) << QPointF(q.x() + 0.363 * size(), q.y() + 0.118 * size())
                          << QPointF(q.x() + 0.588 * size(), q.y() + size()) << QPointF(q.x(), q.y() + 0.382 * size())
                          << QPointF(q.x() - 0.588 * size(), q.y() + size()) << QPointF(q.x() - 0.363 * size(), q.y() + 0.118 * size())
                          << QPointF(q.x() - size(), q.y() - 0.309 * size()) << QPointF(q.x() - 0.2245 * size(), q.y() - 0.309 * size());
+                    /* clang-format on */
                     painter->drawPolygon(star);
                     break;
                 }

@@ -778,7 +778,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double xx : majMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             if (px > 0 && px < d->pixRect.width()) {
-                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)), QPointF(px, double(d->pixRect.height() - BIGTICKSIZE - TICKOFFSET)));
+                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)), //
+                            QPointF(px, double(d->pixRect.height() - BIGTICKSIZE - TICKOFFSET)));
 
                 // Draw ticklabel
                 if (a->areTickLabelsShown()) {
@@ -793,7 +794,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double xx : minTickMarks) {
             double px = d->pixRect.width() * (xx - d->dataRect.x()) / d->dataRect.width();
             if (px > 0 && px < d->pixRect.width()) {
-                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)), QPointF(px, double(d->pixRect.height() - SMALLTICKSIZE - TICKOFFSET)));
+                p->drawLine(QPointF(px, double(d->pixRect.height() - TICKOFFSET)), //
+                            QPointF(px, double(d->pixRect.height() - SMALLTICKSIZE - TICKOFFSET)));
             }
         }
 
@@ -910,7 +912,8 @@ void KPlotWidget::drawAxes(QPainter *p)
         for (const double yy : majMarks) {
             double py = d->pixRect.height() * (1.0 - (yy - y0) / dh);
             if (py > 0 && py < d->pixRect.height()) {
-                p->drawLine(QPointF(double(d->pixRect.width() - TICKOFFSET), py), QPointF(double(d->pixRect.width() - TICKOFFSET - BIGTICKSIZE), py));
+                p->drawLine(QPointF(double(d->pixRect.width() - TICKOFFSET), py), //
+                            QPointF(double(d->pixRect.width() - TICKOFFSET - BIGTICKSIZE), py));
 
                 // Draw ticklabel
                 if (a->areTickLabelsShown()) {
