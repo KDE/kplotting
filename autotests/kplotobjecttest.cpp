@@ -170,6 +170,7 @@ private Q_SLOTS:
         QCOMPARE(m_kPlotObject->points().size(), 2);
         KPlotPoint *p2List = m_kPlotObject->points().at(1);
         QCOMPARE(p2, p2List);
+        delete p2;
 
         // test void KPlotObject::addPoint( double x, double y, const QString &label, double barWidth )
         m_kPlotObject->addPoint(3, 3, QStringLiteral("label3"), 3.0);

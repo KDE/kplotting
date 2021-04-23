@@ -72,6 +72,7 @@ private Q_SLOTS:
         // Add objects
         QList<KPlotObject *> list;
         list << new KPlotObject() << new KPlotObject() << new KPlotObject();
+        widget->addPlotObjects(list);
 
         widget->removeAllPlotObjects();
         QCOMPARE(widget->plotObjects().size(), 0);
