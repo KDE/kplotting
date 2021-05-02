@@ -15,7 +15,7 @@ target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INST
 
 target_link_libraries(KF5Plotting PUBLIC Qt5::Widgets)
 
-set_target_properties(KF5Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION_STRING}
+set_target_properties(KF5Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION}
                                              SOVERSION ${KPLOTTING_SOVERSION}
                                              EXPORT_NAME Plotting
 )
