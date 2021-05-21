@@ -1,15 +1,16 @@
 add_definitions(-DQT_NO_CAST_FROM_ASCII)
 
-set(kplotting_SRCS
+add_library(KF5Plotting)
+add_library(KF5::Plotting ALIAS KF5Plotting)
+
+target_sources(KF5Plotting PRIVATE
  kplotaxis.cpp
  kplotpoint.cpp
  kplotobject.cpp
  kplotwidget.cpp
 )
 
-add_library(KF5Plotting ${kplotting_SRCS})
 generate_export_header(KF5Plotting BASE_NAME KPlotting)
-add_library(KF5::Plotting ALIAS KF5Plotting)
 
 target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KPlotting>")
 
