@@ -1,5 +1,3 @@
-add_definitions(-DQT_NO_CAST_FROM_ASCII)
-
 add_library(KF5Plotting)
 add_library(KF5::Plotting ALIAS KF5Plotting)
 

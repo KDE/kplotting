@@ -37,7 +37,6 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfigVersion.cmake"
                         SOVERSION 5)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
-add_definitions(-DQT_NO_FOREACH)
 
 add_subdirectory(src)
 add_subdirectory(examples)
