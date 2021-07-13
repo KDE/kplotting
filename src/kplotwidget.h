@@ -37,7 +37,7 @@ class KPlotPoint;
  *KPlotWidget automatically adds axis labels with tickmarks and tick
  *labels.  These are encapsulated in the KPlotAxis class.  All you have
  *to do is set the limits of the plotting area in data units, and
- *KPlotWidget wil figure out the optimal positions and labels for the
+ *KPlotWidget will figure out the optimal positions and labels for the
  *tickmarks on the axes.
  *
  *Example of usage:
@@ -127,7 +127,7 @@ public:
      * edges.  For example, if you were plotting temperature on the
      * X-axis, you could use Centigrade units for the primary
      * (bottom) axis, using setLimits( 0.0, 100.0, 0.0, 1.0 ).  If
-     * you also wanted to show Farenheit units along the secondary
+     * you also wanted to show Fahrenheit units along the secondary
      * (top) axis, you would additionally use
      * setSecondaryLimits( 32.0, 212.0, 0.0, 1.0 ).  The data
      * added to the plot would have x-coordinates in Centigrade degrees.
