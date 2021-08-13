@@ -130,7 +130,10 @@ void KPlotWidget::setLimits(double x1, double x2, double y1, double y2)
 
 void KPlotWidget::Private::calcDataRectLimits(double x1, double x2, double y1, double y2)
 {
-    double XA1, XA2, YA1, YA2;
+    double XA1;
+    double XA2;
+    double YA1;
+    double YA2;
     if (x2 < x1) {
         XA1 = x2;
         XA2 = x1;
@@ -167,7 +170,10 @@ void KPlotWidget::Private::calcDataRectLimits(double x1, double x2, double y1, d
 
 void KPlotWidget::setSecondaryLimits(double x1, double x2, double y1, double y2)
 {
-    double XA1, XA2, YA1, YA2;
+    double XA1;
+    double XA2;
+    double YA1;
+    double YA2;
     if (x2 < x1) {
         XA1 = x2;
         XA2 = x1;
