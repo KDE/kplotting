@@ -401,7 +401,7 @@ QRect KPlotWidget::pixRect() const
 QList<KPlotPoint *> KPlotWidget::pointsUnderPoint(const QPoint &p) const
 {
     QList<KPlotPoint *> pts;
-    for (const KPlotObject *po : qAsConst(d->objectList)) {
+    for (const KPlotObject *po : std::as_const(d->objectList)) {
         const auto pointsList = po->points();
         for (KPlotPoint *pp : pointsList) {
             if ((p - mapToWidget(pp->position()).toPoint()).manhattanLength() <= 4) {
@@ -731,7 +731,7 @@ void KPlotWidget::paintEvent(QPaintEvent *e)
 
     resetPlotMask();
 
-    for (KPlotObject *po : qAsConst(d->objectList)) {
+    for (KPlotObject *po : std::as_const(d->objectList)) {
         po->draw(&p, this);
     }
 

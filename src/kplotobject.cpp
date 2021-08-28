@@ -248,7 +248,7 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
         QPointF Previous = QPointF(); // Initialize to null
 
-        for (const KPlotPoint *pp : qAsConst(d->pList)) {
+        for (const KPlotPoint *pp : std::as_const(d->pList)) {
             // q is the position of the point in screen pixel coordinates
             QPointF q = pw->mapToWidget(pp->position());
 
@@ -263,7 +263,7 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
 
     // Draw points:
     if (d->type & Points) {
-        for (const KPlotPoint *pp : qAsConst(d->pList)) {
+        for (const KPlotPoint *pp : std::as_const(d->pList)) {
             // q is the position of the point in screen pixel coordinates
             QPointF q = pw->mapToWidget(pp->position());
             if (pw->pixRect().contains(q.toPoint(), false)) {
@@ -361,7 +361,7 @@ void KPlotObject::draw(QPainter *painter, KPlotWidget *pw)
     // Draw labels
     painter->setPen(labelPen());
 
-    for (KPlotPoint *pp : qAsConst(d->pList)) {
+    for (KPlotPoint *pp : std::as_const(d->pList)) {
         QPoint q = pw->mapToWidget(pp->position()).toPoint();
         if (pw->pixRect().contains(q, false) && !pp->label().isEmpty()) {
             pw->placeLabel(painter, pp);
