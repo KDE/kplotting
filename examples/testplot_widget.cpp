@@ -39,7 +39,7 @@ TestPlot::TestPlot(QWidget *p)
 
     setCentralWidget(w);
 
-    connect(PlotSelector, QOverload<int>::of(&QComboBox::activated), this, &TestPlot::slotSelectPlot);
+    connect(PlotSelector, qOverload<int>(&QComboBox::activated), this, &TestPlot::slotSelectPlot);
 
     slotSelectPlot(PlotSelector->currentIndex());
 }
