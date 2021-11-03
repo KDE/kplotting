@@ -21,7 +21,7 @@ class TestPlot : public QMainWindow
 
 public:
     TestPlot(QWidget *parent = nullptr);
-    ~TestPlot()
+    ~TestPlot() override
     {
     }
 
