@@ -10,9 +10,9 @@ target_sources(KF5Plotting PRIVATE
 
 generate_export_header(KF5Plotting BASE_NAME KPlotting)
 
-target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KPlotting>")
+target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting>")
 
-target_link_libraries(KF5Plotting PUBLIC Qt5::Widgets)
+target_link_libraries(KF5Plotting PUBLIC Qt${QT_MAJOR_VERSION}::Widgets)
 
 set_target_properties(KF5Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION}
                                              SOVERSION ${KPLOTTING_SOVERSION}
@@ -34,7 +34,7 @@ install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${KF5_INSTALL_TARGETS_DEFA
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kplotting_export.h
   ${KPlotting_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KPlotting COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel
 )
 
 if (BUILD_DESIGNERPLUGIN)
@@ -67,5 +67,5 @@ endif()
 
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KPlotting LIB_NAME KF5Plotting DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KPlotting)
+ecm_generate_pri_file(BASE_NAME KPlotting LIB_NAME KF5Plotting DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
