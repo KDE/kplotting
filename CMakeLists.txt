@@ -18,6 +18,7 @@ include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDEGitCommitHooks)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
+include(ECMDeprecationSettings)
 include(ECMAddQch)
 include(GenerateExportHeader)
 include(CMakePackageConfigHelpers)
@@ -36,7 +37,9 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfigVersion.cmake"
                         SOVERSION 5)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
+ecm_set_disabled_deprecation_versions(
+    QT 5.15.2
+)
 
 add_subdirectory(src)
 add_subdirectory(examples)
