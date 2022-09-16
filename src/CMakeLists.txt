@@ -29,7 +29,7 @@ ecm_generate_headers(KPlotting_HEADERS
   REQUIRED_HEADERS KPlotting_HEADERS
 )
 
-install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kplotting_export.h
