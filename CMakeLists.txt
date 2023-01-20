@@ -35,8 +35,8 @@ add_feature_info(DESIGNERPLUGIN ${BUILD_DESIGNERPLUGIN} "Build plugin for Qt Des
 
 ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h"
-                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfigVersion.cmake"
-                        SOVERSION 5)
+                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfigVersion.cmake"
+                        SOVERSION 6)
 ecm_set_disabled_deprecation_versions(
     QT 5.15.2
 )
@@ -48,29 +48,29 @@ if (BUILD_TESTING)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Plotting")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Plotting")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
-        TARGETS KF5Plotting_QCH
-        FILE KF5PlottingQchTargets.cmake
+        TARGETS KF6Plotting_QCH
+        FILE KF6PlottingQchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF5PlottingQchTargets.cmake\")")
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6PlottingQchTargets.cmake\")")
 endif()
 
-configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF5PlottingConfig.cmake.in"
-                              "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfig.cmake"
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6PlottingConfig.cmake.in"
+                              "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfig.cmake"
                               INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
                               )
 
-install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KF5PlottingConfigVersion.cmake"
+install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfig.cmake"
+               "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfigVersion.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel )
 
-install(EXPORT KF5PlottingTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF5PlottingTargets.cmake NAMESPACE KF5:: )
+install(EXPORT KF6PlottingTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF6PlottingTargets.cmake NAMESPACE KF6:: )
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel )

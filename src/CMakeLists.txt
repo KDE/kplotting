@@ -1,20 +1,20 @@
-add_library(KF5Plotting)
-add_library(KF5::Plotting ALIAS KF5Plotting)
+add_library(KF6Plotting)
+add_library(KF6::Plotting ALIAS KF6Plotting)
 
-target_sources(KF5Plotting PRIVATE
+target_sources(KF6Plotting PRIVATE
  kplotaxis.cpp
  kplotpoint.cpp
  kplotobject.cpp
  kplotwidget.cpp
 )
 
-generate_export_header(KF5Plotting BASE_NAME KPlotting)
+generate_export_header(KF6Plotting BASE_NAME KPlotting)
 
-target_include_directories(KF5Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting>")
+target_include_directories(KF6Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting>")
 
-target_link_libraries(KF5Plotting PUBLIC Qt${QT_MAJOR_VERSION}::Widgets)
+target_link_libraries(KF6Plotting PUBLIC Qt${QT_MAJOR_VERSION}::Widgets)
 
-set_target_properties(KF5Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION}
+set_target_properties(KF6Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION}
                                              SOVERSION ${KPLOTTING_SOVERSION}
                                              EXPORT_NAME Plotting
 )
@@ -29,7 +29,7 @@ ecm_generate_headers(KPlotting_HEADERS
   REQUIRED_HEADERS KPlotting_HEADERS
 )
 
-install(TARGETS KF5Plotting EXPORT KF5PlottingTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF6Plotting EXPORT KF6PlottingTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kplotting_export.h
@@ -43,9 +43,9 @@ endif()
 
 if(BUILD_QCH)
     ecm_add_qch(
-        KF5Plotting_QCH
+        KF6Plotting_QCH
         NAME KPlotting
-        BASE_NAME KF5Plotting
+        BASE_NAME KF6Plotting
         VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
@@ -67,5 +67,5 @@ endif()
 
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KPlotting LIB_NAME KF5Plotting DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting)
+ecm_generate_pri_file(BASE_NAME KPlotting LIB_NAME KF6Plotting DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

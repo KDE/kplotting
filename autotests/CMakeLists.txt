@@ -8,5 +8,5 @@ ecm_add_tests(
     kplotaxistest.cpp
     kplotobjecttest.cpp
     kplotwidgettest.cpp
-    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test KF5::Plotting
+    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test KF6::Plotting
 )
