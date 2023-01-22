@@ -12,7 +12,7 @@ generate_export_header(KF6Plotting BASE_NAME KPlotting)
 
 target_include_directories(KF6Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting>")
 
-target_link_libraries(KF6Plotting PUBLIC Qt${QT_MAJOR_VERSION}::Widgets)
+target_link_libraries(KF6Plotting PUBLIC Qt6::Widgets)
 
 set_target_properties(KF6Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION}
                                              SOVERSION ${KPLOTTING_SOVERSION}

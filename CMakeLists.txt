@@ -25,7 +25,7 @@ include(CMakePackageConfigHelpers)
 include(CMakeDependentOption)
 
 set(REQUIRED_QT_VERSION 6.4.0)
-find_package(Qt${QT_MAJOR_VERSION}Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
+find_package(Qt6Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
@@ -38,7 +38,7 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfigVersion.cmake"
                         SOVERSION 6)
 ecm_set_disabled_deprecation_versions(
-    QT 5.15.2
+    QT 6.4
 )
 
 add_subdirectory(src)

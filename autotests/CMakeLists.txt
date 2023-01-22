@@ -1,5 +1,5 @@
 
-find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Test Widgets)
+find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Test Widgets)
 
 include(ECMAddTests)
 
@@ -8,5 +8,5 @@ ecm_add_tests(
     kplotaxistest.cpp
     kplotobjecttest.cpp
     kplotwidgettest.cpp
-    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test KF6::Plotting
+    LINK_LIBRARIES Qt6::Test KF6::Plotting
 )
