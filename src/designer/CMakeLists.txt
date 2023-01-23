@@ -8,7 +8,7 @@ ecm_qtdesignerplugin_widget(KPlotWidget
 
 ecm_add_qtdesignerplugin(kplottingwidgets
     NAME KPlottingWidgets
-    OUTPUT_NAME kplotting5widgets
+    OUTPUT_NAME kplotting6widgets
     WIDGETS
         KPlotWidget
     LINK_LIBRARIES
