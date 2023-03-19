@@ -13,6 +13,8 @@
 #include <QFrame>
 #include <QList>
 
+#include <memory>
+
 class KPlotAxis;
 class KPlotObject;
 class KPlotPoint;
@@ -465,7 +467,7 @@ protected:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 
     Q_DISABLE_COPY(KPlotWidget)
 };

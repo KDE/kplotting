@@ -12,6 +12,8 @@
 
 #include <QString>
 
+#include <memory>
+
 class QPointF;
 
 /**
@@ -111,7 +113,7 @@ public:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 
     Q_DISABLE_COPY(KPlotPoint)
 };

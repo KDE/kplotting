@@ -107,10 +107,7 @@ KPlotWidget::KPlotWidget(QWidget *parent)
     setDefaultPaddings();
 }
 
-KPlotWidget::~KPlotWidget()
-{
-    delete d;
-}
+KPlotWidget::~KPlotWidget() = default;
 
 QSize KPlotWidget::minimumSizeHint() const
 {

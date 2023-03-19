@@ -53,10 +53,7 @@ KPlotObject::KPlotObject(const QColor &c, PlotType t, double size, PointStyle ps
     setPointStyle(ps);
 }
 
-KPlotObject::~KPlotObject()
-{
-    delete d;
-}
+KPlotObject::~KPlotObject() = default;
 
 KPlotObject::PlotTypes KPlotObject::plotTypes() const
 {

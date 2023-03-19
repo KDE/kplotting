@@ -13,6 +13,8 @@
 #include <QColor>
 #include <QString>
 
+#include <memory>
+
 class QBrush;
 class QPainter;
 class QPen;
@@ -257,7 +259,7 @@ public:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 
     Q_DISABLE_COPY(KPlotObject)
 };

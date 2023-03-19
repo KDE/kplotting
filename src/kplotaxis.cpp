@@ -39,10 +39,7 @@ KPlotAxis::KPlotAxis(const QString &label)
     d->m_label = label;
 }
 
-KPlotAxis::~KPlotAxis()
-{
-    delete d;
-}
+KPlotAxis::~KPlotAxis() = default;
 
 bool KPlotAxis::isVisible() const
 {

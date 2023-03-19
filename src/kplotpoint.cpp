@@ -43,10 +43,7 @@ KPlotPoint::KPlotPoint(const QPointF &p, const QString &label, double barWidth)
 {
 }
 
-KPlotPoint::~KPlotPoint()
-{
-    delete d;
-}
+KPlotPoint::~KPlotPoint() = default;
 
 QPointF KPlotPoint::position() const
 {

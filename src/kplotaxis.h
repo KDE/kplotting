@@ -13,6 +13,8 @@
 #include <QList>
 #include <QString>
 
+#include <memory>
+
 /**
  * @short Axis for KPlotWidget
  *
@@ -141,7 +143,7 @@ public:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 
     Q_DISABLE_COPY(KPlotAxis)
 };
