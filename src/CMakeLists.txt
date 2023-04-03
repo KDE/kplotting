@@ -14,7 +14,13 @@ target_sources(KF6Plotting PRIVATE
  kplotwidget.cpp
 )
 
-generate_export_header(KF6Plotting BASE_NAME KPlotting)
+ecm_generate_export_header(KF6Plotting
+    BASE_NAME KPlotting
+    GROUP_BASE_NAME KF
+    VERSION ${KF_VERSION}
+    USE_VERSION_HEADER
+    DEPRECATED_BASE_VERSION 0
+)
 
 target_include_directories(KF6Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting>")
 
