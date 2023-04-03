@@ -33,8 +33,9 @@ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt 
 cmake_dependent_option(BUILD_DESIGNERPLUGIN "Build plugin for Qt Designer" ON "NOT CMAKE_CROSSCOMPILING" OFF)
 add_feature_info(DESIGNERPLUGIN ${BUILD_DESIGNERPLUGIN} "Build plugin for Qt Designer")
 
+set(kplotting_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/kplotting_version.h")
 ecm_setup_version(PROJECT VARIABLE_PREFIX KPLOTTING
-                        VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h"
+                        VERSION_HEADER "${kplotting_version_header}"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfigVersion.cmake"
                         SOVERSION 6)
 ecm_set_disabled_deprecation_versions(
@@ -72,7 +73,7 @@ install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfig.cmake"
 
 install(EXPORT KF6PlottingTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF6PlottingTargets.cmake NAMESPACE KF6:: )
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kplotting_version.h
+install(FILES ${kplotting_version_header}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel )
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
