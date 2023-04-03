@@ -1,6 +1,12 @@
 add_library(KF6Plotting)
 add_library(KF6::Plotting ALIAS KF6Plotting)
 
+set_target_properties(KF6Plotting PROPERTIES
+    VERSION     ${KPLOTTING_VERSION}
+    SOVERSION   ${KPLOTTING_SOVERSION}
+    EXPORT_NAME Plotting
+)
+
 target_sources(KF6Plotting PRIVATE
  kplotaxis.cpp
  kplotpoint.cpp
@@ -13,11 +19,6 @@ generate_export_header(KF6Plotting BASE_NAME KPlotting)
 target_include_directories(KF6Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting>")
 
 target_link_libraries(KF6Plotting PUBLIC Qt6::Widgets)
-
-set_target_properties(KF6Plotting PROPERTIES VERSION   ${KPLOTTING_VERSION}
-                                             SOVERSION ${KPLOTTING_SOVERSION}
-                                             EXPORT_NAME Plotting
-)
 
 ecm_generate_headers(KPlotting_HEADERS
   HEADER_NAMES
