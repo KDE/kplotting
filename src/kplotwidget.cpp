@@ -1027,3 +1027,5 @@ void KPlotWidget::setDefaultPaddings()
     d->topPadding = -1;
     d->bottomPadding = -1;
 }
+
+#include "moc_kplotwidget.cpp"
