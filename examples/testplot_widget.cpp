@@ -179,3 +179,5 @@ void TestPlot::slotSelectPlot(int n)
     }
     }
 }
+
+#include "moc_testplot_widget.cpp"
