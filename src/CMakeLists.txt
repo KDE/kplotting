@@ -73,6 +73,3 @@ if(BUILD_QCH)
 endif()
 
 
-include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KPlotting LIB_NAME KF6Plotting DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting)
-install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
