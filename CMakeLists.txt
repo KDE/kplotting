@@ -44,14 +44,14 @@ ecm_set_disabled_deprecation_versions(
 
 add_subdirectory(src)
 add_subdirectory(examples)
-if (BUILD_TESTING)
+if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Plotting")
 
-if (BUILD_QCH)
+if(BUILD_QCH)
     ecm_install_qch_export(
         TARGETS KF6Plotting_QCH
         FILE KF6PlottingQchTargets.cmake
@@ -66,15 +66,15 @@ configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6PlottingConfig.cma
                               INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
                               )
 
-install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfigVersion.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfig.cmake"
+                "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfigVersion.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        COMPONENT Devel )
+        COMPONENT Devel)
 
-install(EXPORT KF6PlottingTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF6PlottingTargets.cmake NAMESPACE KF6:: )
+install(EXPORT KF6PlottingTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF6PlottingTargets.cmake NAMESPACE KF6::)
 
 install(FILES ${kplotting_version_header}
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel )
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel)
 
 include(ECMFeatureSummary)
 ecm_feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

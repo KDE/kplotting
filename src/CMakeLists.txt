@@ -8,10 +8,10 @@ set_target_properties(KF6Plotting PROPERTIES
 )
 
 target_sources(KF6Plotting PRIVATE
- kplotaxis.cpp
- kplotpoint.cpp
- kplotobject.cpp
- kplotwidget.cpp
+  kplotaxis.cpp
+  kplotpoint.cpp
+  kplotobject.cpp
+  kplotwidget.cpp
 )
 
 ecm_generate_export_header(KF6Plotting
@@ -44,7 +44,7 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel
 )
 
-if (BUILD_DESIGNERPLUGIN)
+if(BUILD_DESIGNERPLUGIN)
     add_subdirectory(designer)
 endif()
 
