@@ -36,6 +36,8 @@ ecm_generate_headers(KPlotting_HEADERS
   REQUIRED_HEADERS KPlotting_HEADERS
 )
 
+ecm_generate_qdoc(KF6Plotting kplotting.qdocconf)
+
 install(TARGETS KF6Plotting EXPORT KF6PlottingTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
@@ -47,29 +49,3 @@ install(FILES
 if(BUILD_DESIGNERPLUGIN)
     add_subdirectory(designer)
 endif()
-
-if(BUILD_QCH)
-    ecm_add_qch(
-        KF6Plotting_QCH
-        NAME KPlotting
-        BASE_NAME KF6Plotting
-        VERSION ${KF_VERSION}
-        ORG_DOMAIN org.kde
-        SOURCES # using only public headers, to cover only public API
-            ${KPlotting_HEADERS}
-        MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
-        LINK_QCHS
-            Qt6Widgets_QCH
-        INCLUDE_DIRS
-            ${CMAKE_CURRENT_BINARY_DIR}
-        BLANK_MACROS
-            KPLOTTING_EXPORT
-            KPLOTTING_DEPRECATED
-            KPLOTTING_DEPRECATED_EXPORT
-        TAGFILE_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
-        QCH_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
-        COMPONENT Devel
-    )
-endif()
-
-

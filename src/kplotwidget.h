@@ -19,7 +19,7 @@ class KPlotAxis;
 class KPlotObject;
 class KPlotPoint;
 
-/**
+/*!
  *@class KPlotWidget
  *
  *@short Generic data plotting widget.
@@ -79,18 +79,18 @@ class KPLOTTING_EXPORT KPlotWidget : public QFrame
     Q_PROPERTY(bool grid READ isGridShown WRITE setShowGrid)
     Q_PROPERTY(bool objectToolTip READ isObjectToolTipShown WRITE setObjectToolTipShown)
 public:
-    /**
+    /*!
      *@short Constructor.
      *@param parent the parent widget
      */
     explicit KPlotWidget(QWidget *parent = nullptr);
 
-    /**
+    /*!
      *@short Destructor.
      */
     ~KPlotWidget() override;
 
-    /**
+    /*!
      * The four types of plot axes.
      */
     enum Axis {
@@ -100,17 +100,17 @@ public:
         TopAxis, ///< the top axis
     };
 
-    /**
+    /*!
      *@return suggested minimum size for the plot widget
      */
     QSize minimumSizeHint() const override;
 
-    /**
+    /*!
      *@return suggested size for the plot widget
      */
     QSize sizeHint() const override;
 
-    /**
+    /*!
      * Set new data limits for the plot.
      * @param x1 the minimum X value in data units
      * @param x2 the maximum X value in data units
@@ -119,7 +119,7 @@ public:
      */
     void setLimits(double x1, double x2, double y1, double y2);
 
-    /**
+    /*!
      * @short Reset the secondary data limits, which control the
      * values displayed along the top and right axes.
      *
@@ -142,21 +142,21 @@ public:
      */
     void setSecondaryLimits(double x1, double x2, double y1, double y2);
 
-    /**
+    /*!
      * Unset the secondary limits, so the top and right axes
      * show the same tickmarks as the bottom and left axes (no tickmark
      * labels will be drawn for the top and right axes in this case)
      */
     void clearSecondaryLimits();
 
-    /**
+    /*!
      * @return the rectangle representing the boundaries of the current plot,
      * in natural data units.
      * @sa setLimits()
      */
     QRectF dataRect() const;
 
-    /**
+    /*!
      * @return the rectangle representing the boundaries of the secondary
      * data limits, if they have been set.  Otherwise, this function
      * behaves the same as dataRect().
@@ -164,57 +164,57 @@ public:
      */
     QRectF secondaryDataRect() const;
 
-    /**
+    /*!
      * @return the rectangle representing the boundaries of the current plot,
      * in screen pixel units.
      */
     QRect pixRect() const;
 
-    /**
+    /*!
      * Add an item to the list of KPlotObjects to be plotted.
      * The widget takes ownership of the plot object, unless auto-delete was disabled.
      * @param object the KPlotObject to be added
      */
     void addPlotObject(KPlotObject *object);
 
-    /**
+    /*!
      * Add more than one KPlotObject at one time.
      * The widget takes ownership of the plot object, unless auto-delete was disabled.
      * @param objects the list of KPlotObjects to be added
      */
     void addPlotObjects(const QList<KPlotObject *> &objects);
 
-    /**
+    /*!
      * @return the current list of plot objects
      */
     QList<KPlotObject *> plotObjects() const;
 
-    /**
+    /*!
      * Enables auto-deletion of plot objects if autoDelete is true; otherwise auto-deletion is disabled.
      * Auto-deletion is enabled by default.
      * @since 5.12
      */
     void setAutoDeletePlotObjects(bool autoDelete);
 
-    /**
+    /*!
      * Removes all plot objects that were added to the widget.
      * If auto-delete was not disabled, the plot objects are deleted.
      */
     void removeAllPlotObjects();
 
-    /**
+    /*!
      * Reset the mask used for non-overlapping labels so that all
      * regions of the plot area are considered empty.
      */
     void resetPlotMask();
 
-    /**
+    /*!
      * Clear the object list, reset the data limits, and remove axis labels
      * If auto-delete was not disabled, the plot objects are deleted.
      */
     void resetPlot();
 
-    /**
+    /*!
      * Replace an item in the KPlotObject list.
      * @param i the index of the item to be replaced
      * @param o pointer to the replacement KPlotObject
@@ -225,14 +225,14 @@ public:
      */
     void replacePlotObject(int i, KPlotObject *o);
 
-    /**
+    /*!
      * @return the background color of the plot.
      *
      * The default color is black.
      */
     QColor backgroundColor() const;
 
-    /**
+    /*!
      * @return the foreground color, used for axes, tickmarks and associated
      * labels.
      *
@@ -240,56 +240,56 @@ public:
      */
     QColor foregroundColor() const;
 
-    /**
+    /*!
      * @return the grid color.
      *
      * The default color is gray.
      */
     QColor gridColor() const;
 
-    /**
+    /*!
      * Set the background color
      * @param bg the new background color
      */
     void setBackgroundColor(const QColor &bg);
 
-    /**
+    /*!
      * Set the foreground color
      * @param fg the new foreground color
      */
     void setForegroundColor(const QColor &fg);
 
-    /**
+    /*!
      * Set the grid color
      * @param gc the new grid color
      */
     void setGridColor(const QColor &gc);
 
-    /**
+    /*!
      * @return whether the grid lines are shown
      * Grid lines are not shown by default.
      */
     bool isGridShown() const;
 
-    /**
+    /*!
      * @return whether the tooltip for the point objects is shown.
      * Tooltips are enabled by default.
      */
     bool isObjectToolTipShown() const;
 
-    /**
+    /*!
      * @return whether the antialiasing is active
      * Antialiasing is not active by default.
      */
     bool antialiasing() const;
 
-    /**
+    /*!
      * Toggle antialiased drawing.
      * @param b if true, the plot graphics will be antialiased.
      */
     void setAntialiasing(bool b);
 
-    /**
+    /*!
      * @return the number of pixels to the left of the plot area.
      *
      * Padding values are set to -1 by default; if unchanged, this
@@ -298,7 +298,7 @@ public:
      */
     int leftPadding() const;
 
-    /**
+    /*!
      * @return the number of pixels to the right of the plot area.
      * Padding values are set to -1 by default; if unchanged, this
      * function will try to guess a good value, based on whether
@@ -306,7 +306,7 @@ public:
      */
     int rightPadding() const;
 
-    /**
+    /*!
      * @return the number of pixels above the plot area.
      * Padding values are set to -1 by default; if unchanged, this
      * function will try to guess a good value, based on whether
@@ -314,7 +314,7 @@ public:
      */
     int topPadding() const;
 
-    /**
+    /*!
      * @return the number of pixels below the plot area.
      * Padding values are set to -1 by default; if unchanged, this
      * function will try to guess a good value, based on whether
@@ -322,37 +322,37 @@ public:
      */
     int bottomPadding() const;
 
-    /**
+    /*!
      * @short Set the number of pixels to the left of the plot area.
      * Set this to -1 to revert to automatic determination of padding values.
      */
     void setLeftPadding(int padding);
 
-    /**
+    /*!
      * @short Set the number of pixels to the right of the plot area.
      * Set this to -1 to revert to automatic determination of padding values.
      */
     void setRightPadding(int padding);
 
-    /**
+    /*!
      * @short Set the number of pixels above the plot area.
      * Set this to -1 to revert to automatic determination of padding values.
      */
     void setTopPadding(int padding);
 
-    /**
+    /*!
      * @short Set the number of pixels below the plot area.
      * Set this to -1 to revert to automatic determination of padding values.
      */
     void setBottomPadding(int padding);
 
-    /**
+    /*!
      * @short Revert all four padding values to -1, so that they will be
      * automatically determined.
      */
     void setDefaultPaddings();
 
-    /**
+    /*!
      * @short Map a coordinate @param p from the data rect to the physical
      * pixel rect.
      * Used mainly when drawing.
@@ -361,7 +361,7 @@ public:
      */
     QPointF mapToWidget(const QPointF &p) const;
 
-    /**
+    /*!
      * Indicate that object labels should try to avoid the given
      * rectangle in the plot.  The rectangle is in pixel coordinates.
      *
@@ -374,7 +374,7 @@ public:
      */
     void maskRect(const QRectF &r, float value = 1.0f);
 
-    /**
+    /*!
      * Indicate that object labels should try to avoid the line
      * joining the two given points (in pixel coordinates).
      *
@@ -387,7 +387,7 @@ public:
      */
     void maskAlongLine(const QPointF &p1, const QPointF &p2, float value = 1.0f);
 
-    /**
+    /*!
      * Place an object label optimally in the plot.  This function will
      * attempt to place the label as close as it can to the point to which
      * the label belongs, while avoiding overlap with regions of the plot
@@ -401,27 +401,27 @@ public:
      */
     void placeLabel(QPainter *painter, KPlotPoint *pp);
 
-    /**
+    /*!
      * @return the axis of the specified @p type, or 0 if no axis has been set.
      * @sa Axis
      */
     KPlotAxis *axis(Axis type);
 
-    /**
+    /*!
      * @return the axis of the specified @p type, or 0 if no axis has been set.
      * @sa Axis
      */
     const KPlotAxis *axis(Axis type) const;
 
 public Q_SLOTS:
-    /**
+    /*!
      * Toggle whether grid lines are drawn at major tickmarks.
      * @param show if true, grid lines will be drawn.
      * @sa isGridShown()
      */
     void setShowGrid(bool show);
 
-    /**
+    /*!
      * Toggle the display of a tooltip for point objects.
      * @param show whether show the tooltip.
      * @sa isObjectToolTipShown()
@@ -429,22 +429,22 @@ public Q_SLOTS:
     void setObjectToolTipShown(bool show);
 
 protected:
-    /**
+    /*!
      * Generic event handler.
      */
     bool event(QEvent *) override;
 
-    /**
+    /*!
      * The paint event handler, executed when update() or repaint() is called.
      */
     void paintEvent(QPaintEvent *) override;
 
-    /**
+    /*!
      * The resize event handler, called when the widget is resized.
      */
     void resizeEvent(QResizeEvent *) override;
 
-    /**
+    /*!
      * Draws the plot axes and axis labels.
      * @internal Internal use only; one should simply call update()
      * to draw the widget with axes and all objects.
@@ -452,13 +452,13 @@ protected:
      */
     virtual void drawAxes(QPainter *p);
 
-    /**
+    /*!
      * Synchronize the PixRect with the current widget size and
      * padding settings.
      */
     void setPixRect();
 
-    /**
+    /*!
      * @return a list of points in the plot which are within 4 pixels
      * of the screen position given as an argument.
      * @param p The screen position from which to check for plot points.

@@ -19,16 +19,13 @@ include(KDEGitCommitHooks)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMDeprecationSettings)
-include(ECMAddQch)
+include(ECMGenerateQDoc)
 include(ECMGenerateExportHeader)
 include(CMakePackageConfigHelpers)
 include(CMakeDependentOption)
 
 set(REQUIRED_QT_VERSION 6.6.0)
 find_package(Qt6Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
-
-option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
-add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
 cmake_dependent_option(BUILD_DESIGNERPLUGIN "Build plugin for Qt Designer" ON "NOT CMAKE_CROSSCOMPILING" OFF)
 add_feature_info(DESIGNERPLUGIN ${BUILD_DESIGNERPLUGIN} "Build plugin for Qt Designer")
@@ -50,16 +47,6 @@ endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Plotting")
-
-if(BUILD_QCH)
-    ecm_install_qch_export(
-        TARGETS KF6Plotting_QCH
-        FILE KF6PlottingQchTargets.cmake
-        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        COMPONENT Devel
-    )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6PlottingQchTargets.cmake\")")
-endif()
 
 configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6PlottingConfig.cmake.in"
                               "${CMAKE_CURRENT_BINARY_DIR}/KF6PlottingConfig.cmake"

@@ -62,7 +62,7 @@ public:
     KPlotWidget *q;
 
     void calcDataRectLimits(double x1, double x2, double y1, double y2);
-    /**
+    /*!
      * @return a value indicating how well the given rectangle is
      * avoiding masked regions in the plot.  A higher returned value
      * indicates that the rectangle is intersecting a larger portion
@@ -770,7 +770,7 @@ void KPlotWidget::drawAxes(QPainter *p)
     f.setPointSize(s - 2);
     p->setFont(f);
 
-    /*** BottomAxis ***/
+    /*!* BottomAxis ***/
     KPlotAxis *a = axis(BottomAxis);
     if (a->isVisible()) {
         // Draw axis line
@@ -809,7 +809,7 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
     } // End of BottomAxis
 
-    /*** LeftAxis ***/
+    /*!* LeftAxis ***/
     a = axis(LeftAxis);
     if (a->isVisible()) {
         // Draw axis line
@@ -867,7 +867,7 @@ void KPlotWidget::drawAxes(QPainter *p)
         dh = secondaryDataRect().height();
     }
 
-    /*** TopAxis ***/
+    /*!* TopAxis ***/
     a = axis(TopAxis);
     if (a->isVisible()) {
         // Draw axis line
@@ -904,7 +904,7 @@ void KPlotWidget::drawAxes(QPainter *p)
         }
     } // End of TopAxis
 
-    /*** RightAxis ***/
+    /*!* RightAxis ***/
     a = axis(RightAxis);
     if (a->isVisible()) {
         // Draw axis line

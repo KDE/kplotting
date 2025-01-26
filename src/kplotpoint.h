@@ -16,7 +16,7 @@
 
 class QPointF;
 
-/**
+/*!
  * @class KPlotPoint
  * @short Encapsulates a point in the plot.
  * A KPlotPoint consists of X and Y coordinates (in Data units),
@@ -29,12 +29,12 @@ class QPointF;
 class KPLOTTING_EXPORT KPlotPoint
 {
 public:
-    /**
+    /*!
      * Default constructor.
      */
     explicit KPlotPoint();
 
-    /**
+    /*!
      * Constructor.  Sets the KPlotPoint according to the given arguments
      * @param x the X-position for the point, in Data units
      * @param y the Y-position for the point, in Data units
@@ -45,7 +45,7 @@ public:
      */
     KPlotPoint(double x, double y, const QString &label = QString(), double width = 0.0);
 
-    /**
+    /*!
      * Constructor.  Sets the KPlotPoint according to the given arguments
      * @param p the position for the point, in Data units
      * @param label the label string for the point.  If the string
@@ -55,58 +55,58 @@ public:
      */
     explicit KPlotPoint(const QPointF &p, const QString &label = QString(), double width = 0.0);
 
-    /**
+    /*!
      * Destructor
      */
     ~KPlotPoint();
 
-    /**
+    /*!
      * @return the position of the point, in data units
      */
     QPointF position() const;
 
-    /**
+    /*!
      * Set the position of the point, in data units
      * @param pos the new position for the point.
      */
     void setPosition(const QPointF &pos);
 
-    /**
+    /*!
      * @return the X-position of the point, in data units
      */
     double x() const;
 
-    /**
+    /*!
      * Set the X-position of the point, in Data units
      */
     void setX(double x);
 
-    /**
+    /*!
      * @return the Y-position of the point, in data units
      */
     double y() const;
 
-    /**
+    /*!
      * Set the Y-position of the point, in Data units
      */
     void setY(double y);
 
-    /**
+    /*!
      * @return the label for the point
      */
     QString label() const;
 
-    /**
+    /*!
      * Set the label for the point
      */
     void setLabel(const QString &label);
 
-    /**
+    /*!
      * @return the bar-width for the point
      */
     double barWidth() const;
 
-    /**
+    /*!
      * Set the bar-width for the point
      */
     void setBarWidth(double w);
