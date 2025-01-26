@@ -1,0 +1,31 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KPlotting
+description = Data plotting
+
+documentationinheaders = true
+
+headerdirs += .
+sourcedirs += .
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    qtgui \
+    qtwidgets
+
+qhp.projects            = KPlotting
+
+qhp.KPlotting.file                = kplotting.qhp
+qhp.KPlotting.namespace           = org.kde.kplotting.$QT_VERSION_TAG
+qhp.KPlotting.virtualFolder       = kplotting
+qhp.KPlotting.indexTitle          = KPlotting
+qhp.KPlotting.indexRoot           =
+
+qhp.KPlotting.subprojects         = classes
+qhp.KPlotting.subprojects.classes.title = C++ Classes
+qhp.KPlotting.subprojects.classes.indexTitle = KPlotting C++ Classes
+qhp.KPlotting.subprojects.classes.selectors = class fake:headerfile
+qhp.KPlotting.subprojects.classes.sortPages = true
