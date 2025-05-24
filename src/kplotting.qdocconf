@@ -31,3 +31,5 @@ qhp.KPlotting.subprojects.classes.title = C++ Classes
 qhp.KPlotting.subprojects.classes.indexTitle = KPlotting C++ Classes
 qhp.KPlotting.subprojects.classes.selectors = class fake:headerfile
 qhp.KPlotting.subprojects.classes.sortPages = true
+
+tagfile = kplotting.tags
