@@ -21,6 +21,7 @@ include(ECMGenerateHeaders)
 include(ECMDeprecationSettings)
 include(ECMGenerateQDoc)
 include(ECMGenerateExportHeader)
+include(ECMInstalledLibraryCheck)
 include(CMakePackageConfigHelpers)
 include(CMakeDependentOption)
 

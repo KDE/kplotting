@@ -26,7 +26,7 @@ target_include_directories(KF6Plotting INTERFACE "$<INSTALL_INTERFACE:${KDE_INST
 
 target_link_libraries(KF6Plotting PUBLIC Qt6::Widgets)
 
-ecm_generate_headers(KPlotting_HEADERS
+ecm_generate_headers(KPlotting_CamelCase_HEADERS
   HEADER_NAMES
   KPlotAxis
   KPlotPoint
@@ -43,7 +43,21 @@ install(TARGETS KF6Plotting EXPORT KF6PlottingTargets ${KF_INSTALL_TARGETS_DEFAU
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kplotting_export.h
   ${KPlotting_HEADERS}
+  ${KPlotting_CamelCase_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KPlotting COMPONENT Devel
+)
+
+ecm_add_installed_library_check(KF6Plotting
+    PACKAGE_NAME "KF6Plotting"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+ecm_installed_library_check_include_strings(KF6Plotting
+    HEADERS ${KPlotting_CamelCase_HEADERS}
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6Plotting
+    PREFIX KPLOTTING
 )
 
 if(BUILD_DESIGNERPLUGIN)
